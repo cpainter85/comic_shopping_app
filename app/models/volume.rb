@@ -23,10 +23,10 @@ class Volume < ActiveRecord::Base
 
     all_issues.each do |issue|
       i = self.issues.new
-
       i.comic_vine_issue_id = issue['id']
       i.issue_number = issue['issue_number']
       i.story_name = issue['name']
+
       if i.save
         single = comic_vine.issue(api_key, i.comic_vine_issue_id)['results']
         i.description = single['description']
@@ -34,6 +34,26 @@ class Volume < ActiveRecord::Base
         single['image'] ? i.thumbnail_url = single['image']['thumb_url'] : nil
         i.cover_date = single['cover_date']
         i.save
+
+        creators = single['person_credits']
+        creators.each do |creator|
+          c = i.creators.new
+          c.comic_vine_creator_id = creator['id']
+          c.name = creator['name']
+          if c.save
+            person = comic_vine.creator(api_key, c.comic_vine_creator_id)['results']
+            c.short_description = person['deck']
+            c.full_description = person['description']
+            person['image'] ? c.profile_picture_url = person['image']['small_url'] : nil
+            person['image'] ? c.profile_picture_thumb_url = person['image']['thumb_url'] : nil
+            c.save
+          end
+
+          credit = i.issue_credits.new
+          credit.creator_id = Creator.find_by(comic_vine_creator_id: creator['id']).id
+          credit.role = creator['role']
+          credit.save
+        end
       end
     end
   end
