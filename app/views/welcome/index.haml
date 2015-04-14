@@ -1,0 +1,19 @@
+.container
+  .jumbotron.text-center
+    %h1 Welcome!
+    %h4 Here you can search and find information about comics that you wish to purchase along with links to various vendors selling digital versions of these comics
+
+    -# Search bar and functionality for later
+    -# =form_tag search_path, class: 'form-inline', method: :get do
+    -#   .form-group
+    -#     =label_tag :query, 'Search Comic Volumes (Series)', class:  'search-label'
+    -#
+    -#     .input-group
+    -#       =text_field_tag :query, params[:query], :class => 'search-box'
+    -#     =submit_tag 'Search', :class => 'btn btn-default search-button'
+
+    %p Browse Volumes by Publishers:
+    -@publishers.each do |publisher|
+      .row
+        .col-md-3
+          =link_to image_tag(publisher.logo_thumb_url), publisher_path(publisher)

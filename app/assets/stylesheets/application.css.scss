@@ -13,5 +13,20 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap-sprockets";
- @import "bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  padding-bottom: 75px;
+  padding-top: 75px;
+}
+
+.jumbotron > * {
+  padding: 7px;
+}
+
+.navbar-fixed-bottom {
+  border-top: 2px inset #f8f8f8;
+  background: #f8f8f8;
+  padding: 5px
+}
