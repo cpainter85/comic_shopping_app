@@ -1,1 +1,16 @@
-%h1 Publisher placeholder
+.container
+  .page-header
+    %h1=@publisher.name
+  .row
+    .col-md-3
+      =image_tag(@publisher.logo_url)
+    .col-md-9
+      -# %p=strip_links(@publisher.short_description).html_safe
+      %p=strip_links(@publisher.full_description).html_safe
+  %h3="Volumes:"
+  .well
+    .row
+      -@publisher.volumes.each do |volume|
+        .col-md-4.index_element
+          %p.text-center.thumb=image_tag(volume.thumbnail_url ? volume.thumbnail_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail')
+          %p.text-center="#{volume.name} (#{volume.start_year})"
