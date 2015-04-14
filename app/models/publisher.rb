@@ -1,4 +1,7 @@
 class Publisher < ActiveRecord::Base
+
+  has_many :volumes
+  
   validates :comic_vine_pub_id, uniqueness: true
 
   def get_pub_info(api_key)
