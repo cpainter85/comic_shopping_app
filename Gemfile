@@ -6,7 +6,7 @@ gem 'pg_search', '~> 0.7.9'
 gem 'nokogiri', '~> 1.6.6.2'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'faraday'
-gem 'haml'
+gem 'haml', '~> 4.0.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
