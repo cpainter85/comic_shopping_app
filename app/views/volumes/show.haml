@@ -1,0 +1,16 @@
+.container
+  .page-header
+    %h1=@volume.name
+  .row
+    .col-md-6
+      =image_tag(@volume.image_url ? @volume.image_url : 'no_image_available_cover.jpg', class: 'cover_image')
+      .container.center-block
+    .container
+      .col-md-6
+        %p=strip_links(@volume.description).html_safe
+
+        .well
+          %h5="List of Issues (#{pluralize(@volume.issues.count, 'Issues')})"
+          %ul
+            -@volume.issues.sort {|a,b| a.issue_number.to_f <=> b.issue_number.to_f}.each do |issue|
+              %li="Issue \##{issue.issue_number} #{!issue.story_name.empty? ? '- ' + issue.story_name : ''}"
