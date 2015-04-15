@@ -13,4 +13,4 @@
           %h5="List of Issues (#{pluralize(@volume.issues.count, 'Issues')})"
           %ul
             -@volume.issues.sort {|a,b| a.issue_number.to_f <=> b.issue_number.to_f}.each do |issue|
-              %li="Issue \##{issue.issue_number} #{!issue.story_name.empty? ? '- ' + issue.story_name : ''}"
+              %li=link_to "Issue \##{issue.issue_number} #{!issue.story_name.empty? ? '- ' + issue.story_name : ''}", publisher_volume_issue_path(@publisher, @volume, issue)

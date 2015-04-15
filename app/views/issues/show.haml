@@ -1,0 +1,23 @@
+.container
+  .page-header
+    %h1
+      =link_to "#{@volume.name}", publisher_volume_path(@publisher, @volume)
+      =" \# #{@issue.issue_number} #{!@issue.story_name.empty? ? '- ' + @issue.story_name : ''}"
+  .row
+    .col-md-6
+      =image_tag(@issue.cover_image_url ? @issue.cover_image_url : 'no_image_available_cover.jpg', class: 'cover_image')
+    .col-md-6
+      %p=strip_links(@issue.description).html_safe
+      -if !@issue.issue_credits.empty?
+        .well
+          %h5 Issue Credits:
+          %ul
+            -@issue.issue_credits.each do |credit|
+              %li
+                ="#{credit.creator.name}"
+                ="- #{credit.role}"
+      -if @issue.cover_date
+        %p
+          %strong Cover Date:
+          =@issue.cover_date.strftime('%B %Y')
+      %p=link_to 'Return to Volume Overview', publisher_volume_path(@publisher, @volume)
