@@ -14,7 +14,7 @@
           %ul
             -@issue.issue_credits.each do |credit|
               %li
-                ="#{credit.creator.name}"
+                =link_to "#{credit.creator.name}", creator_path(credit.creator)
                 ="- #{credit.role}"
       -if @issue.cover_date
         %p

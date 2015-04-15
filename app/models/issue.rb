@@ -6,4 +6,8 @@ class Issue < ActiveRecord::Base
 
   validates :comic_vine_issue_id, uniqueness: true
 
+
+  def full_title_with_year
+    "#{self.volume.name} (#{self.volume.start_year}) \##{self.issue_number}"
+  end
 end
