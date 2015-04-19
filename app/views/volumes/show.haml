@@ -4,7 +4,7 @@
   .row
     .col-md-6
       =image_tag(@volume.image_url ? @volume.image_url : 'no_image_available_cover.jpg', class: 'cover_image')
-      .container.center-block
+
     .container
       .col-md-6
         %p=strip_links(@volume.description).html_safe
@@ -14,3 +14,4 @@
           %ul
             -@volume.issues.sort {|a,b| a.issue_number.to_f <=> b.issue_number.to_f}.each do |issue|
               %li=link_to "Issue \##{issue.issue_number} #{!issue.story_name.empty? ? '- ' + issue.story_name : ''}", publisher_volume_issue_path(@publisher, @volume, issue)
+        =link_to "View other volumes by #{@publisher.name}", publisher_path(@publisher)
