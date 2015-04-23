@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
 
+  before_action :disable_nav
+
   def index
-    @publishers = Publisher.all
   end
 end

@@ -1,0 +1,19 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      =link_to 'Home', root_path, class: 'navbar-brand'
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.dropdown
+          =link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}, role: 'button') do
+            Publishers
+            %span.caret
+          %ul.dropdown-menu
+            -@publishers.each do |publisher|
+              %li=link_to publisher.name, publisher_path(publisher)
+        -# %li.dropdown.nav=link_to 'Creators', creators_path
+      =form_tag search_path, class: 'navbar-form navbar-left', method: :get do
+        .form-group
+          -# =label_tag :query, 'Search Comic Volumes'
+          =text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Search Comic Volumes'
+          =submit_tag 'Search', class: 'btn btn-default'
