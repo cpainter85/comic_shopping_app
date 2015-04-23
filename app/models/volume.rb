@@ -1,7 +1,11 @@
 class Volume < ActiveRecord::Base
 
+  include PgSearch
+
+  multisearchable against: [:name, :description, :start_year, :thumbnail_url, :publisher_id]
+
   belongs_to :publisher
-  has_many :issues
+  has_many :issues, dependent: :destroy
 
   validates :comic_vine_vol_id, uniqueness: true
 

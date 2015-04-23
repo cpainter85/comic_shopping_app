@@ -11,10 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414050902) do
+ActiveRecord::Schema.define(version: 20150423203018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
+  enable_extension "fuzzystrmatch"
 
   create_table "creators", force: :cascade do |t|
     t.string   "name"
@@ -46,6 +48,14 @@ ActiveRecord::Schema.define(version: 20150414050902) do
     t.date     "cover_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "publishers", force: :cascade do |t|
