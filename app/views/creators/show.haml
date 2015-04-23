@@ -3,9 +3,9 @@
     %h1=@creator.name
 
   .row
-    .col-md-6
+    .col-md-6.creator-info
       =image_tag(@creator.profile_picture_url && @creator.profile_picture_url != 'http://static.comicvine.com/uploads/scale_small/0/1/1-male-good-large.jpg' && !(@creator.profile_picture_url.include? 'question_mark') ? @creator.profile_picture_url : 'no_image_available_cover.jpg', class: 'img-rounded center-block profile-pic')
-      %p=strip_links(@creator.full_description).html_safe
+      %p=strip_links(@creator.short_description).html_safe
 
     .container
       .col-md-6
