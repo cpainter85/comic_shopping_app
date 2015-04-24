@@ -9,7 +9,7 @@
             Publishers
             %span.caret
           %ul.dropdown-menu
-            -@publishers.each do |publisher|
+            -@publishers.order(:name).each do |publisher|
               %li=link_to publisher.name, publisher_path(publisher)
         -# %li.dropdown.nav=link_to 'Creators', creators_path
       =form_tag search_path, class: 'navbar-form navbar-left', method: :get do
