@@ -6,6 +6,9 @@
       =image_tag(@publisher.logo_url, class: 'pub-logo')
     .col-md-9
       %p=strip_links(@publisher.short_description).html_safe
+      %p
+        %strong Website:
+        =link_to @publisher.website, @publisher.website
       -# %p=strip_links(@publisher.full_description).html_safe
   %h3="Volumes:"
   .well
