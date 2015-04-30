@@ -6,6 +6,7 @@ class Volume < ActiveRecord::Base
 
   belongs_to :publisher
   has_many :issues, dependent: :destroy
+  has_many :for_sale_bundles, dependent: :destroy
 
   validates :comic_vine_vol_id, uniqueness: true
 

@@ -4,7 +4,10 @@
   .row
     .col-md-6
       =image_tag(@volume.image_url ? @volume.image_url : 'no_image_available_cover.jpg', class: 'cover_image')
-
+      .container.center-block
+        -if @volume.for_sale_bundles
+          -@volume.for_sale_bundles.sort {|a,b| a.extract_first_number_from_bundle <=> b.extract_first_number_from_bundle }.each do |bundle|
+            =link_to "Purchase a bundle of issues #{bundle.extract_issue_numbers_from_bundle} for #{bundle.price_in_dollars} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle'
     .container
       .col-md-6
         %p=strip_links(@volume.description).html_safe

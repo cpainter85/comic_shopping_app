@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423203018) do
+ActiveRecord::Schema.define(version: 20150429224743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
+  enable_extension "pg_trgm"
 
   create_table "creators", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +27,34 @@ ActiveRecord::Schema.define(version: 20150423203018) do
     t.string   "profile_picture_thumb_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "dark_horse_digital_comics", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "price_in_cents"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "for_sale_bundles", force: :cascade do |t|
+    t.integer  "volume_id"
+    t.integer  "vendor_id"
+    t.string   "url"
+    t.integer  "price_in_cents"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  create_table "for_sale_comics", force: :cascade do |t|
+    t.integer  "issue_id"
+    t.integer  "vendor_id"
+    t.string   "url"
+    t.integer  "price_in_cents"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "vendor_issue_id"
   end
 
   create_table "issue_credits", force: :cascade do |t|
@@ -68,6 +96,13 @@ ActiveRecord::Schema.define(version: 20150423203018) do
     t.datetime "updated_at"
     t.string   "logo_url"
     t.string   "logo_thumb_url"
+  end
+
+  create_table "vendors", force: :cascade do |t|
+    t.string   "name"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "volumes", force: :cascade do |t|
