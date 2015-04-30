@@ -3,7 +3,7 @@
     %h1=@publisher.name
   .row
     .col-md-3
-      =image_tag(@publisher.logo_url, class: 'pub-logo')
+      =image_tag(@publisher.logo_url, class: 'pub-logo-show')
     .col-md-9
       %p=strip_links(@publisher.short_description).html_safe
       %p
