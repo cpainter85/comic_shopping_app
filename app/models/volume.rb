@@ -10,6 +10,10 @@ class Volume < ActiveRecord::Base
 
   validates :comic_vine_vol_id, uniqueness: true
 
+  def name_with_date
+    "#{self.name} (#{self.start_year})"
+  end
+
   def get_vol_info(api_key)
     comic_vine = ComicVineAPI.new
     volume = comic_vine.volume(api_key, self.comic_vine_vol_id)['results']

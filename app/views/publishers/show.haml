@@ -13,7 +13,7 @@
   %h3="Volumes:"
   .well
     .row
-      -@publisher.volumes.order(:name).each do |volume|
+      -@publisher.volumes.sort {|a,b| a.name_with_date <=> b.name_with_date}.each do |volume|
         .col-md-4.index_element
           %p.text-center.thumb=link_to image_tag(volume.thumbnail_url ? volume.thumbnail_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), publisher_volume_path(@publisher, volume)
-          %p.text-center=link_to "#{volume.name} (#{volume.start_year})", publisher_volume_path(@publisher, volume)
+          %p.text-center=link_to volume.name_with_date, publisher_volume_path(@publisher, volume)
