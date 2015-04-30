@@ -16,4 +16,7 @@
       -@publishers.order(:name).each do |publisher|
 
         .col-md-2
-          =link_to image_tag(publisher.logo_thumb_url), publisher_path(publisher), class: 'pub-logo'
+          .row
+            =link_to image_tag(publisher.logo_thumb_url), publisher_path(publisher), class: 'pub-logo'
+          .row
+            =link_to publisher.name, publisher_path(publisher)
