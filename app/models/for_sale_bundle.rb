@@ -7,11 +7,17 @@ class ForSaleBundle < ActiveRecord::Base
   def extract_issue_numbers_from_bundle
     if self.name.include? '#'
       self.name.slice(self.name.index('#')...self.name.index('Bundle')).strip
+    else
+      'Big Bundle'
     end
   end
 
   def extract_first_number_from_bundle
-    self.name.slice((self.name.index('#')+1)...self.name.index('-')).strip.to_i
+    if self.name.include? '#'
+      self.name.slice((self.name.index('#')+1)...self.name.index('-')).strip.to_i
+    else
+      0
+    end
   end
 
   def price_in_dollars

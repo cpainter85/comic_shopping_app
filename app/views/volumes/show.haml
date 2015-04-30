@@ -8,7 +8,7 @@
       -if @volume.for_sale_bundles && @volume.issues.count >= 20
         .container.center-block
           -@volume.for_sale_bundles.sort {|a,b| a.extract_first_number_from_bundle <=> b.extract_first_number_from_bundle }.each do |bundle|
-            -if bundle.extract_issue_numbers_from_bundle == '# -'
+            -if bundle.extract_issue_numbers_from_bundle == 'Big Bundle'
               =link_to "Purchase a bundle of all issues for #{bundle.price_in_dollars} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle'
             -else
               =link_to "Purchase a bundle of issues #{bundle.extract_issue_numbers_from_bundle} for #{bundle.price_in_dollars} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle'
@@ -24,5 +24,8 @@
         -if @volume.for_sale_bundles && @volume.issues.count < 20
           .container.center-block
             -@volume.for_sale_bundles.sort {|a,b| a.extract_first_number_from_bundle <=> b.extract_first_number_from_bundle }.each do |bundle|
-              =link_to "Purchase a bundle of issues #{bundle.extract_issue_numbers_from_bundle} for #{bundle.price_in_dollars} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle-right'
+              -if bundle.extract_issue_numbers_from_bundle == 'Big Bundle'
+                =link_to "Purchase a bundle of all issues for #{bundle.price_in_dollars} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle-right'
+              -else
+                =link_to "Purchase a bundle of issues #{bundle.extract_issue_numbers_from_bundle} for #{bundle.price_in_dollars} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle-right'
         =link_to "View other volumes by #{@publisher.name}", publisher_path(@publisher)
