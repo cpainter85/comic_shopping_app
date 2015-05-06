@@ -6,7 +6,6 @@ class VendorData < ActiveRecord::Base
     doc = Nokogiri::HTML(open(url))
 
     issues = doc.css('.Issues')
-    
     c = issues.css('li.content-item')
     c.each do |issue|
 
