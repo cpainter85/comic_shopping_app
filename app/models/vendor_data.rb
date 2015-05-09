@@ -25,6 +25,29 @@ class VendorData < ActiveRecord::Base
     end
   end
 
+  def self.comixology_retrieve_gns(url)
+    doc = Nokogiri::HTML(open(url))
+
+    issues = doc.css('.GraphicNovels')
+    c = issues.css('li.content-item')
+    c.each do |issue|
+
+      url = issue.css('.content-cover').xpath('a').first.attributes['href'].value
+      if issue.css('.content-info').css('.content-subtitle').empty?
+        title = issue.css('.content-info').css('.content-title').first.children.to_s
+      else
+        title = issue.css('.content-info').css('.content-subtitle').first.children.to_s
+      end
+      string_dollar_price = issue.css('.item-price').first.children.to_s
+      price_in_cents = (string_dollar_price.delete('$').to_f*100).to_i
+      comic = VendorData.new
+      comic.title = title
+      comic.url = url
+      comic.price_in_cents = price_in_cents
+      comic.save
+    end
+  end
+
   def self.dhd_retrieve_comics(url)
     require 'sanitize'
 
