@@ -15,6 +15,7 @@ class VendorData < ActiveRecord::Base
       else
         title = issue.css('.content-info').css('.content-subtitle').first.children.to_s
       end
+
       string_dollar_price = issue.css('.item-price').first.children.to_s
       price_in_cents = (string_dollar_price.delete('$').to_f*100).to_i
       comic = VendorData.new
@@ -69,14 +70,14 @@ class VendorData < ActiveRecord::Base
 
   end
 
-  # def extract_volume_name_from_title
-  #   if self.title.include? '#'
-  #     self.title.slice(0...(self.title.index('#'))).strip
-  #   else
-  #     self.title
-  #   end
-  # end
-
+  # # def extract_volume_name_from_title
+  # #   if self.title.include? '#'
+  # #     self.title.slice(0...(self.title.index('#'))).strip
+  # #   else
+  # #     self.title
+  # #   end
+  # # end
+  #
   def extract_issue_number_from_title
     if self.title.include? '#'
       self.title.slice(((self.title.index('#'))+1)..self.title.length).strip
@@ -85,8 +86,22 @@ class VendorData < ActiveRecord::Base
     end
   end
 
+  def extract_issue_num_from_gn
+    self.title.slice(5..self.title.length)
+  end
+
   def comixology_make_for_sale(volume)
     issue = Volume.find(volume).issues.find_by(issue_number: self.extract_issue_number_from_title)
+    if issue
+      for_sale = issue.for_sale_comics.new(vendor_id: Vendor.find_by(name: 'Comixology').id)
+      for_sale.price_in_cents = self.price_in_cents
+      for_sale.url = self.url
+      for_sale.save
+    end
+  end
+
+  def comixology_make_gn_for_sale(volume)
+    issue = Volume.find(volume).issues.find_by(issue_number: self.extract_issue_num_from_gn)
     if issue
       for_sale = issue.for_sale_comics.new(vendor_id: Vendor.find_by(name: 'Comixology').id)
       for_sale.price_in_cents = self.price_in_cents
