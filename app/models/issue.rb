@@ -13,10 +13,11 @@ class Issue < ActiveRecord::Base
   end
 
   def get_previous_issue
-    self.volume.issues.order(:issue_number).where('issue_number < ?', self.issue_number).last
+    self.volume.issues.order(:id).where('id < ?', self.id).last
+
   end
 
   def get_next_issue
-    self.volume.issues.order(:issue_number).where('issue_number > ?', self.issue_number).first
+    self.volume.issues.order(:id).where('id > ?', self.id).first
   end
 end
