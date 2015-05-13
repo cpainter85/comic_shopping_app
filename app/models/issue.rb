@@ -11,4 +11,12 @@ class Issue < ActiveRecord::Base
   def full_title_with_year
     "#{self.volume.name} (#{self.volume.start_year}) \##{self.issue_number}"
   end
+
+  def get_previous_issue
+    self.volume.issues.order(:issue_number).where('issue_number < ?', self.issue_number).last
+  end
+
+  def get_next_issue
+    self.volume.issues.order(:issue_number).where('issue_number > ?', self.issue_number).first
+  end
 end

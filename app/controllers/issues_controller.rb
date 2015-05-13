@@ -5,6 +5,6 @@ class IssuesController < ApplicationController
   end
 
   def show
-    @issue = @volume.issues.find(params[:id])
+    @issue = @volume.issues.find(params[:id])    
   end
 end

@@ -1,8 +1,15 @@
 .container
   .page-header
     %h1
-      =link_to "#{@volume.name}", publisher_volume_path(@publisher, @volume)
-      =" \# #{@issue.issue_number} #{!(@issue.story_name == nil) && !@issue.story_name.empty? ? '- ' + @issue.story_name : ''}"
+      .text-center
+        .pull-left
+          -if @issue.get_previous_issue != nil
+            =link_to '', publisher_volume_issue_path(@publisher, @volume,@issue.get_previous_issue), class: 'glyphicon glyphicon-chevron-left'
+        =link_to "#{@volume.name}", publisher_volume_path(@publisher, @volume)
+        =" \# #{@issue.issue_number} #{!(@issue.story_name == nil) && !@issue.story_name.empty? ? '- ' + @issue.story_name : ''}"
+        .pull-right
+          -if @issue.get_next_issue != nil
+            =link_to '', publisher_volume_issue_path(@publisher, @volume,@issue.get_next_issue), class: 'glyphicon glyphicon-chevron-right'
   .row
     .col-md-6
       =image_tag(@issue.cover_image_url ? @issue.cover_image_url : 'no_image_available_cover.jpg', class: 'cover_image')
@@ -26,3 +33,6 @@
           =link_to "Available for Purchase at #{comic.vendor.name} for #{comic.price_in_dollars}", comic.url, class: 'btn btn-warning btn-lg btn-block'
 
       %p=link_to 'Return to Volume Overview', publisher_volume_path(@publisher, @volume)
+
+      -# -if @issue.get_previous_issue != nil
+      -#   %p=link_to 'Previous', publisher_volume_issue_path(@publisher, @volume,@issue.get_previous_issue), class: 'glyphicon glyphicon-chevron-left'
