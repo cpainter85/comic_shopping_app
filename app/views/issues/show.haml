@@ -6,10 +6,13 @@
           -if @issue.get_previous_issue != nil
             =link_to '', publisher_volume_issue_path(@publisher, @volume,@issue.get_previous_issue), class: 'glyphicon glyphicon-chevron-left'
         =link_to "#{@volume.name}", publisher_volume_path(@publisher, @volume)
-        =" \# #{@issue.issue_number} #{!(@issue.story_name == nil) && !@issue.story_name.empty? ? '- ' + @issue.story_name : ''}"
+        =" \# #{@issue.issue_number} "
         .pull-right
           -if @issue.get_next_issue != nil
             =link_to '', publisher_volume_issue_path(@publisher, @volume,@issue.get_next_issue), class: 'glyphicon glyphicon-chevron-right'
+    %h4
+      .text-center
+        ="#{!(@issue.story_name == nil) && !@issue.story_name.empty? ? @issue.story_name : ''}"
   .row
     .col-md-6
       =image_tag(@issue.cover_image_url ? @issue.cover_image_url : 'no_image_available_cover.jpg', class: 'cover_image')
