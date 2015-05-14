@@ -2,6 +2,8 @@ class Publisher < ActiveRecord::Base
 
   has_many :volumes, dependent: :destroy
 
+
+  validates :name, presence: true, uniqueness: true
   validates :comic_vine_pub_id, uniqueness: true
 
   def get_pub_info(api_key)
