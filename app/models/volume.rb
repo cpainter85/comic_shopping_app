@@ -8,6 +8,7 @@ class Volume < ActiveRecord::Base
   has_many :issues, dependent: :destroy
   has_many :for_sale_bundles, dependent: :destroy
 
+  validates :name, presence: true
   validates :comic_vine_vol_id, uniqueness: true
 
   def name_with_date

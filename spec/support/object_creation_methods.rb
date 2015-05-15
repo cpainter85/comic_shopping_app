@@ -21,3 +21,33 @@ def create_volume(publisher, overrides = {})
     start_year: 2012
   }.merge(overrides))
 end
+
+def create_issue(volume, overrides={})
+  Issue.create!({
+    volume_id: volume.id,
+    issue_number: '1',
+    comic_vine_issue_id: 314965,
+    description: 'Issue description',
+    cover_image_url: 'http://static.site.com/conan1.gif',
+    thumbnail_url: 'http://static.site.com/conan1-thumb.gif',
+    story_name: 'Queen of the Black Coast Part 1',
+    cover_date: '2012-02-01'
+  }.merge(overrides))
+end
+
+def create_vendor(overrides={})
+  Vendor.create!({
+    name: 'Dark Horse Digital',
+    website: 'https://digital.darkhorse.com/'
+  }.merge(overrides))
+end
+
+def create_for_sale_bundle(volume, vendor, overrides={})
+  ForSaleBundle.create!({
+    volume_id: volume.id,
+    vendor_id: vendor.id,
+    price_in_cents: 999,
+    url: 'http://www.comicsforsale.com/conan-bundle',
+    name: 'Conan The Barbarian # 1-6 Bundle'
+  }.merge(overrides))
+end
