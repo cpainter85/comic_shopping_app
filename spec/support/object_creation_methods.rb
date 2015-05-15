@@ -51,3 +51,31 @@ def create_for_sale_bundle(volume, vendor, overrides={})
     name: 'Conan The Barbarian # 1-6 Bundle'
   }.merge(overrides))
 end
+
+def create_creator(overrides={})
+  Creator.create!({
+    name: 'Becky Cloonan',
+    comic_vine_creator_id: 48209,
+    short_description: 'short description',
+    full_description: 'long description',
+    profile_picture_url: 'http://static.page.com/beckycloonan.gif',
+    profile_picture_thumb_url: 'http://static.page.com/beckycloonan-thumb.gif'
+  }.merge(overrides))
+end
+
+def create_issue_credit(issue, creator, overrides={})
+  IssueCredit.create!({
+    issue_id: issue.id,
+    creator_id: creator.id,
+    role: 'artist'
+  }.merge(overrides))
+end
+
+def create_for_sale_comic(issue, vendor, overrides={})
+  ForSaleComic.create!({
+    issue_id: issue.id,
+    vendor_id: vendor.id,
+    url: 'http://www.comicsforsale.com/conan.html',
+    price_in_cents: 199
+  }.merge(overrides))
+end

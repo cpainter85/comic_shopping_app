@@ -5,6 +5,8 @@ class Issue < ActiveRecord::Base
   has_many :creators, through: :issue_credits
   has_many :for_sale_comics, dependent: :destroy
 
+  validates :volume_id, presence: true
+  validates :issue_number, presence: true
   validates :comic_vine_issue_id, uniqueness: true
 
 
