@@ -2,6 +2,8 @@ class ForSaleBundle < ActiveRecord::Base
   belongs_to :volume
   belongs_to :vendor
 
+  validates :name, presence: true
+
   def extract_issue_numbers_from_bundle
     if self.name.include? '#'
       self.name.slice(self.name.index('#')...self.name.index('Bundle')).strip
