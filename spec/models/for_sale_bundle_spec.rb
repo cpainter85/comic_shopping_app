@@ -25,5 +25,15 @@ describe ForSaleBundle do
       expect(for_sale_bundle.errors.any?).to eq(true)
       expect(for_sale_bundle.errors.messages).to eq(name: ['can\'t be blank'])
     end
+    it 'validates the presence of a volume id' do
+      for_sale_bundle.update_attributes(volume_id: nil)
+      expect(for_sale_bundle.errors.any?).to eq(true)
+      expect(for_sale_bundle.errors.messages).to eq(volume_id: ['can\'t be blank'])
+    end
+    it 'validates the presence of a vendor id' do
+      for_sale_bundle.update_attributes(vendor_id: nil)
+      expect(for_sale_bundle.errors.any?).to eq(true)
+      expect(for_sale_bundle.errors.messages).to eq(vendor_id: ['can\'t be blank'])
+    end
   end
 end

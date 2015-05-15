@@ -2,6 +2,8 @@ class ForSaleComic < ActiveRecord::Base
   belongs_to :issue
   belongs_to :vendor
 
+  validates :issue_id, presence: true
+  validates :vendor_id, presence: true
   validates_uniqueness_of :issue_id, :scope => :vendor_id
 
   def price_in_dollars

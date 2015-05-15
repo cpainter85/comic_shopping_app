@@ -3,6 +3,8 @@ class ForSaleBundle < ActiveRecord::Base
   belongs_to :vendor
 
   validates :name, presence: true
+  validates :volume_id, presence: true
+  validates :vendor_id, presence: true
 
   def extract_issue_numbers_from_bundle
     if self.name.include? '#'
