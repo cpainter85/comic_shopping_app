@@ -16,6 +16,12 @@ feature 'Welcome Page' do
     expect(page).to have_content publisher2.name
   end
 
+  scenario 'Welcome page should NOT have navbar' do
+    visit root_path
+
+    expect(page).to have_no_css('nav') 
+  end
+
   # unless I can figure out how to build pg_search database in test environment can't test search
   # scenario 'User can search volumes from welcome page' do
   #   volume = create_volume(@publisher)
