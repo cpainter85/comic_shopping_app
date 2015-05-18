@@ -14,6 +14,10 @@ class Issue < ActiveRecord::Base
     "#{self.volume.name} (#{self.volume.start_year}) \##{self.issue_number}"
   end
 
+  def full_title_without_year
+    "#{self.volume.name} \##{self.issue_number}"
+  end
+
   def get_previous_issue
     # self.volume.issues.order(:id).where('id < ?', self.id).last
     self.volume.issues.select{|issue| issue.issue_number.to_f < self.issue_number.to_f}.sort {|a,b| a.issue_number.to_f <=> b.issue_number.to_f}.last;

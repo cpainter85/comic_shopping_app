@@ -2,6 +2,22 @@ class VendorData < ActiveRecord::Base
   require 'nokogiri'
   require 'open-uri'
 
+  def self.google_retrieve_comics(volume)
+    volume.issues.each do |issue|
+      to_search = issue.full_title_without_year.gsub(' ', '%20').gsub('#', '%23')
+      url = "https://play.google.com/store/search?q=#{to_search}&c=books"
+      doc = Nokogiri::HTML(open(url))
+      web_address = 'https://play.google.com/' + doc.css('.details').first.children.css('a').first.attributes['href'].value
+      price_in_dollars = doc.css('.details').first.children.css('.display-price').text
+      price_in_cents = (price_in_dollars.delete('$').to_f*100).to_i
+
+      comic = VendorData.new(title: issue.full_title_without_year)
+      comic.url = web_address
+      comic.price_in_cents = price_in_cents
+      comic.save
+    end
+  end
+
   def self.comixology_retrieve_comics(url)
     doc = Nokogiri::HTML(open(url))
 
@@ -88,6 +104,16 @@ class VendorData < ActiveRecord::Base
 
   def extract_issue_num_from_gn
     self.title.slice(5..self.title.length)
+  end
+
+  def google_make_for_sale(volume)
+    issue = Volume.find(volume).issues.find_by(issue_number: self.extract_issue_number_from_title)
+    if issue
+      for_sale = issue.for_sale_comics.new(vendor_id: Vendor.find_by(name: 'Google Play Store').id)
+      for_sale.price_in_cents = self.price_in_cents
+      for_sale.url = self.url
+      for_sale.save
+    end
   end
 
   def comixology_make_for_sale(volume)
