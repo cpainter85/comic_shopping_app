@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+//= require jquery.turbolinks
 
 $(document).ready(function () {
   if ($('.glyphicon-chevron-right').length === 1) {
