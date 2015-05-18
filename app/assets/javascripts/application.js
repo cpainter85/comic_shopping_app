@@ -15,3 +15,23 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+
+$(document).ready(function () {
+  if ($('.glyphicon-chevron-right').length === 1) {
+    $('body').keydown(function (key) {
+      if (key.which === 39) {
+        window.location.href = $('.glyphicon-chevron-right').attr('href');
+      }
+      key.preventDefault();
+    })
+  }
+
+  if ($('.glyphicon-chevron-left').length === 1) {
+    $('body').keydown(function (key) {
+      if (key.which === 37) {
+        window.location.href = $('.glyphicon-chevron-left').attr('href');
+      }
+      key.preventDefault();
+    })
+  }
+});
