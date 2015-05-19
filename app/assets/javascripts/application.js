@@ -41,5 +41,15 @@ $(document).ready(function () {
       key.preventDefault();
     })
   }
-  // else default behavior for keys, not override entire keydowns
+
+
+  if ($('.issue-description').html().length > 1000) {
+    $('.test').hide();
+    $('.issue-description').prepend('<div class="small-text">' + $('.test').html().substring(0,1000)+'... ' + '<button class="expand">Expand</button>')
+    // $('.issue-description').replaceWith($('.issue-description').html().substring(0,1000)+'... ' + '<button class="expand">Expand</button>');
+  }
+  $(document).on('click', $('.expand'), function () {
+    $('.test').show();
+    $('.small-text').hide();
+  });
 });
