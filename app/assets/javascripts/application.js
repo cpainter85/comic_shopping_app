@@ -23,6 +23,9 @@ $(document).ready(function () {
       if (key.which === 39) {
         window.location.href = $('.glyphicon-chevron-right').attr('href');
       }
+      else {
+        return true;
+      }
       key.preventDefault();
     })
   }
@@ -31,6 +34,9 @@ $(document).ready(function () {
     $('body').keydown(function (key) {
       if (key.which === 37) {
         window.location.href = $('.glyphicon-chevron-left').attr('href');
+      }
+      else {
+        return true;
       }
       key.preventDefault();
     })
