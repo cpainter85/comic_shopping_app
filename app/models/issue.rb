@@ -9,6 +9,13 @@ class Issue < ActiveRecord::Base
   validates :issue_number, presence: true
   validates :comic_vine_issue_id, uniqueness: true
 
+  def description_without_cover_info
+    if self.description.include? '<h4>'
+      self.description.slice(0...self.description.index('<h4>'))
+    else
+      self.description
+    end
+  end
 
   def full_title_with_year
     "#{self.volume.name} (#{self.volume.start_year}) \##{self.issue_number}"

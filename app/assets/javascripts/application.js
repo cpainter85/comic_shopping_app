@@ -43,7 +43,7 @@ $(document).ready(function () {
   }
 
 
-  if ($('.description').text().length > 1000) {
+  if ($('.description').html().length > 1000) {
     $('.full-description').append('<span class="retract glyphicon glyphicon-minus"></span>')
     $('.full-description').hide();
     $('.description').append('<div class="small-text">' + $('.full-description').html().substring(0,1000)+'... ' + '<span class="expand glyphicon glyphicon-plus"></span>')
