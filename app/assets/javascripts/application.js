@@ -43,21 +43,19 @@ $(document).ready(function () {
   }
 
 
-  if ($('.issue-description').html().length > 1000) {
-    $('.test').append('<span class="retract glyphicon glyphicon-minus"></span>')
-    $('.test').hide();
-    $('.issue-description').prepend('<div class="small-text">' + $('.test').html().substring(0,1000)+'... ' + '<span class="expand glyphicon glyphicon-plus"></span>')
-    // $('.issue-description').replaceWith($('.issue-description').html().substring(0,1000)+'... ' + '<button class="expand">Expand</button>');
+  if ($('.description').text().length > 1000) {
+    $('.full-description').append('<span class="retract glyphicon glyphicon-minus"></span>')
+    $('.full-description').hide();
+    $('.description').append('<div class="small-text">' + $('.full-description').html().substring(0,1000)+'... ' + '<span class="expand glyphicon glyphicon-plus"></span>')
   }
   $(document).on('click', '.expand', function () {
-    $('.test').show();
-    // $('.test').append('<span class="retract glyphicon glyphicon-minus"></span>')
+    $('.full-description').show();
     $('.small-text').hide();
   });
 
 
   $(document).on('click', '.glyphicon-minus', function () {
-    $('.test').hide();
+    $('.full-description').hide();
     $('.small-text').show();
   });
 });

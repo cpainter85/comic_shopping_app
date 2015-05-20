@@ -17,9 +17,9 @@
     .col-md-6
       =image_tag(@issue.cover_image_url ? @issue.cover_image_url : 'no_image_available_cover.jpg', class: 'cover_image')
     .col-md-6
-      .issue-description
+      .description
         %p
-          .test
+          .full-description
             =strip_links(@issue.description).html_safe
       -if !@issue.issue_credits.empty?
         .well
