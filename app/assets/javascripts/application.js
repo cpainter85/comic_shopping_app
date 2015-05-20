@@ -44,12 +44,20 @@ $(document).ready(function () {
 
 
   if ($('.issue-description').html().length > 1000) {
+    $('.test').append('<span class="retract glyphicon glyphicon-minus"></span>')
     $('.test').hide();
-    $('.issue-description').prepend('<div class="small-text">' + $('.test').html().substring(0,1000)+'... ' + '<button class="expand">Expand</button>')
+    $('.issue-description').prepend('<div class="small-text">' + $('.test').html().substring(0,1000)+'... ' + '<span class="expand glyphicon glyphicon-plus"></span>')
     // $('.issue-description').replaceWith($('.issue-description').html().substring(0,1000)+'... ' + '<button class="expand">Expand</button>');
   }
-  $(document).on('click', $('.expand'), function () {
+  $(document).on('click', '.expand', function () {
     $('.test').show();
+    // $('.test').append('<span class="retract glyphicon glyphicon-minus"></span>')
     $('.small-text').hide();
+  });
+
+
+  $(document).on('click', '.glyphicon-minus', function () {
+    $('.test').hide();
+    $('.small-text').show();
   });
 });
