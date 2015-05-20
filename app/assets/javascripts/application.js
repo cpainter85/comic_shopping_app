@@ -43,19 +43,44 @@ $(document).ready(function () {
   }
 
 
-  if ($('.description').html().length > 1000) {
-    $('.full-description').append('<span class="retract glyphicon glyphicon-minus"></span>')
-    $('.full-description').hide();
-    $('.description').append('<div class="small-text">' + $('.full-description').html().substring(0,1000)+'... ' + '<span class="expand glyphicon glyphicon-plus"></span>')
+  if ($('.full-description').prop('scrollHeight') > $('.full-description').height()) {
+    // console.log('OVERFLOW!')
+    $('.full-description').parent().after('<span class="expand glyphicon glyphicon-collapse-down"></span>')
   }
+
   $(document).on('click', '.expand', function () {
-    $('.full-description').show();
-    $('.small-text').hide();
+    $('.full-description').css('height', 'auto');
+    $('.expand').hide();
+    $('.full-description').append('<span class="retract glyphicon glyphicon-collapse-up"></span>');
   });
 
-
-  $(document).on('click', '.glyphicon-minus', function () {
-    $('.full-description').hide();
-    $('.small-text').show();
+  $(document).on('click', '.retract', function () {
+    $('.full-description').css('height', '500px');
+    $('.expand').show();
   });
+
+  // $(document).on('click', '.retract', function () {
+  //   $('.full-description').css('height', 'auto');
+  //   $('.expand').hide();
+  // });
+
+
+  // if ($('.description').html().length > 1000) {
+  //   $('.full-description').append('<span class="retract glyphicon glyphicon-minus"></span>')
+  //   $('.full-description').hide();
+  //   $('.description').append('<div class="small-text">' + $('.full-description').html().substring(0,1000)+'... ' + '<span class="expand glyphicon glyphicon-plus"></span>')
+  // }
+  // $(document).on('click', '.expand', function () {
+  //   $('.full-description').show()
+  //   $('.small-text').hide();
+  // });
+  //
+
+
+  // fixed height for the containing div
+  // hit the bottom
+  // toggle between two different heights
+
+  // find open source and try to play with it
+  // look up puppet and hiera
 });
