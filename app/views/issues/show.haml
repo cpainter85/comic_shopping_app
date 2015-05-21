@@ -19,7 +19,8 @@
     .col-md-6
       .description
         .full-description
-          =strip_links(@issue.description_without_cover_info).html_safe
+          -if @issue.description
+            =strip_links(@issue.description_without_cover_info).html_safe
       -if !@issue.issue_credits.empty?
         .well
           %h5 Issue Credits:

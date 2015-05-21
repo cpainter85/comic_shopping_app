@@ -17,7 +17,8 @@
         .description
           %p
             .full-description
-              =strip_links(@volume.description).html_safe
+              -if @volume.description
+                =strip_links(@volume.description).html_safe
 
         .well
           %h5="List of Issues (#{pluralize(@volume.issues.count, 'Issues')})"
