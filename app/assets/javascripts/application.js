@@ -44,23 +44,36 @@ $(document).ready(function () {
 
 
   if ($('.full-description').prop('scrollHeight') > $('.full-description').height()) {
-    $('.full-description').parent().after('<span class="expand glyphicon glyphicon-collapse-down"></span>')
+    $('.expansion-button').append('<span class="expand glyphicon glyphicon-collapse-down"></span>')
   }
   else {
     $('.full-description').removeClass('full-description').addClass('short-description');
   }
 
   $(document).on('click', '.expand', function () {
-    $('.full-description').css('height', 'auto').slideDown();
-    $('.expand').hide();
     if($('.retract').length === 0) {
-      $('.full-description').append('<span class="retract glyphicon glyphicon-collapse-up"></span>');
+      $('.expansion-button').append('<span class="retract glyphicon glyphicon-collapse-up"></span>');
     }
+
+    var descriptionHeight = $('.full-description').prop('scrollHeight');
+    $('.full-description').animate({
+      height: descriptionHeight
+    }, 800);
+    $('.expand').hide();
+    $('.retract').show();
 
   });
 
   $(document).on('click', '.retract', function () {
-    $('.full-description').css('height', '250px');
+    $('.full-description').animate({
+      height: 250
+    }, 800);
+    $('.retract').hide();
     $('.expand').show();
+
   });
 });
+
+// on hover html property with text
+// form with a prepopulating hidden field, ajax call
+// rails ajax guide -> send it to an action remote true

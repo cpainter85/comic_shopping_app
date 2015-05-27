@@ -14,12 +14,10 @@
               =link_to "Purchase a bundle of issues #{bundle.extract_issue_numbers_from_bundle} for #{number_to_currency(bundle.price_in_cents.to_f/100)} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle'
     .container
       .col-md-6
-        .description
-          %p
-            .full-description
-              -if @volume.description
-                =strip_links(@volume.description).html_safe
-
+        .full-description
+          -if @volume.description
+            =strip_links(@volume.description).html_safe
+        .expansion-button
         .well
           %h5="List of Issues (#{pluralize(@volume.issues.count, 'Issues')})"
           %ul
