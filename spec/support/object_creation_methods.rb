@@ -79,3 +79,23 @@ def create_for_sale_comic(issue, vendor, overrides={})
     price_in_cents: 199
   }.merge(overrides))
 end
+
+def create_character(overrides={})
+  Character.create!({
+    name: 'Conan',
+    real_name: 'Conan',
+    aliases: 'Conan the Barbarian\nAmra the Lion\nConan the Cimmerian\nKing Conan',
+    comic_vine_character_id: 2438,
+    short_description: 'short description of Conan',
+    full_description: 'long description of Conan',
+    image_url: 'http://static.site.com/conan.jpg',
+    thumb_url: 'http://static.site.com/conan-thumb.jpg'
+  }.merge(overrides))
+end
+
+def create_character_appearance(issue, character)
+  CharacterAppearance.create!({
+    issue_id: issue.id,
+    character_id: character.id
+    })
+end

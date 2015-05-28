@@ -11,12 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502184353) do
+ActiveRecord::Schema.define(version: 20150528213632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "fuzzystrmatch"
   enable_extension "pg_trgm"
+
+  create_table "character_appearances", force: :cascade do |t|
+    t.integer  "issue_id"
+    t.integer  "character_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string   "name"
+    t.string   "real_name"
+    t.string   "aliases"
+    t.integer  "comic_vine_character_id"
+    t.string   "short_description"
+    t.string   "full_description"
+    t.string   "image_url"
+    t.string   "thumb_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "creators", force: :cascade do |t|
     t.string   "name"

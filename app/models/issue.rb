@@ -4,6 +4,8 @@ class Issue < ActiveRecord::Base
   has_many :issue_credits, dependent: :destroy
   has_many :creators, through: :issue_credits
   has_many :for_sale_comics, dependent: :destroy
+  has_many :character_appearances, dependent: :destroy
+  has_many :characters, through: :character_appearances
 
   validates :volume_id, presence: true
   validates :issue_number, presence: true

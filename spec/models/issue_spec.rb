@@ -14,6 +14,10 @@ describe Issue do
     let(:vendor2) { create_vendor(name: 'Comixology') }
     let(:for_sale_comic) { create_for_sale_comic(issue, vendor) }
     let(:for_sale_comic2) { create_for_sale_comic(issue, vendor2) }
+    let(:character) { create_character }
+    let(:character2) { create_character(name: 'Superman', comic_vine_character_id: 11)}
+    let!(:character_appearance) { create_character_appearance(issue, character) }
+    let!(:character_appearance2) { create_character_appearance(issue, character2) }
 
     describe '#volume' do
       it 'returns the volume of a given issue' do
@@ -36,6 +40,18 @@ describe Issue do
     describe '#for_sale_comics' do
       it 'returns for sale comics of a given issue' do
         expect(issue.for_sale_comics).to eq([for_sale_comic, for_sale_comic2])
+      end
+    end
+
+    describe '#character_appearances' do
+      it 'returns the character appearances of a given issue' do
+        expect(issue.character_appearances).to eq([character_appearance, character_appearance2])
+      end
+    end
+
+    describe '#characters' do
+      it 'returns the characters that appear in a given issue' do
+        expect(issue.characters).to eq([character, character2])
       end
     end
   end
