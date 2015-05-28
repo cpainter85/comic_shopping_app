@@ -7,16 +7,38 @@ class VendorData < ActiveRecord::Base
       to_search = issue.full_title_with_year.gsub(' ', '%20').gsub('#', '%23')
       url = "https://play.google.com/store/search?q=#{to_search}&c=books"
       doc = Nokogiri::HTML(open(url))
-      title = doc.css('.details').first.css('.title').first.attributes['title']
-      web_address = 'https://play.google.com/' + doc.css('.details').first.children.css('a').first.attributes['href'].value
-      price_in_dollars = doc.css('.details').first.children.css('.display-price').text
-      price_in_cents = (price_in_dollars.delete('$').to_f*100).to_i
+      if doc.css('.details').length > 0
+        title = doc.css('.details').first.css('.title').first.attributes['title']
+        web_address = 'https://play.google.com/' + doc.css('.details').first.children.css('a').first.attributes['href'].value
+        price_in_dollars = doc.css('.details').first.children.css('.display-price').text
+        price_in_cents = (price_in_dollars.delete('$').to_f*100).to_i
 
-      comic = VendorData.new
-      comic.title = title
-      comic.url = web_address
-      comic.price_in_cents = price_in_cents
-      comic.save
+        comic = VendorData.new
+        comic.title = title
+        comic.url = web_address
+        comic.price_in_cents = price_in_cents
+        comic.save
+      end
+    end
+  end
+
+  def self.google_retrieve_comics_issues(issues)
+    issues.each do |issue|
+      to_search = issue.full_title_with_year.gsub(' ', '%20').gsub('#', '%23')
+      url = "https://play.google.com/store/search?q=#{to_search}&c=books"
+      doc = Nokogiri::HTML(open(url))
+      if doc.css('.details').length > 0
+        title = doc.css('.details').first.css('.title').first.attributes['title']
+        web_address = 'https://play.google.com/' + doc.css('.details').first.children.css('a').first.attributes['href'].value
+        price_in_dollars = doc.css('.details').first.children.css('.display-price').text
+        price_in_cents = (price_in_dollars.delete('$').to_f*100).to_i
+
+        comic = VendorData.new
+        comic.title = title
+        comic.url = web_address
+        comic.price_in_cents = price_in_cents
+        comic.save
+      end
     end
   end
 
@@ -25,16 +47,18 @@ class VendorData < ActiveRecord::Base
       to_search = issue.full_title_without_year.gsub(' ', '%20').gsub('#', '%23')
       url = "https://play.google.com/store/search?q=#{to_search}&c=books"
       doc = Nokogiri::HTML(open(url))
-      title = doc.css('.details').first.css('.title').first.attributes['title']
-      web_address = 'https://play.google.com/' + doc.css('.details').first.children.css('a').first.attributes['href'].value
-      price_in_dollars = doc.css('.details').first.children.css('.display-price').text
-      price_in_cents = (price_in_dollars.delete('$').to_f*100).to_i
+      if doc.css('.details').length > 0
+        title = doc.css('.details').first.css('.title').first.attributes['title']
+        web_address = 'https://play.google.com/' + doc.css('.details').first.children.css('a').first.attributes['href'].value
+        price_in_dollars = doc.css('.details').first.children.css('.display-price').text
+        price_in_cents = (price_in_dollars.delete('$').to_f*100).to_i
 
-      comic = VendorData.new
-      comic.title = title
-      comic.url = web_address
-      comic.price_in_cents = price_in_cents
-      comic.save
+        comic = VendorData.new
+        comic.title = title
+        comic.url = web_address
+        comic.price_in_cents = price_in_cents
+        comic.save
+      end
     end
   end
 
