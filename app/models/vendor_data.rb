@@ -24,7 +24,7 @@ class VendorData < ActiveRecord::Base
 
   def self.google_retrieve_comics_issues(issues)
     issues.each do |issue|
-      to_search = issue.full_title_with_year.gsub(' ', '%20').gsub('#', '%23')
+      to_search = issue.full_title_without_year.gsub(' ', '%20').gsub('#', '%23')
       url = "https://play.google.com/store/search?q=#{to_search}&c=books"
       doc = Nokogiri::HTML(open(url))
       if doc.css('.details').length > 0
