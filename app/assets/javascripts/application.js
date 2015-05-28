@@ -72,6 +72,7 @@ $(document).ready(function () {
     $('.expand').show();
 
   });
+
 });
 
 // on hover html property with text

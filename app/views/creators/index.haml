@@ -1,8 +1,7 @@
 .container
   .page-header
     %h1 Creators
-  .well
-    .row
-      -@creators.each do |creator|
-        .col-md-4.index_element
-          %p.text-center=link_to creator.name, creator_path(creator)
+  -@creators.each_with_index do |creator, index|
+    -if creator.name[0] != @creators[index-1].name[0]
+      %h5.letter.text-center="-#{creator.name[0]}-"
+    =link_to creator.name, creator_path(creator), class: 'creator-name'

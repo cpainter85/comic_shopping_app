@@ -139,3 +139,17 @@ body {
 .browse-options p {
   margin: 5px;
 }
+
+.creator-name {
+  float: left;
+  margin: 10px 5%;
+  width: 15%;
+}
+
+.creator-name:nth-child(4n) {
+  clear: left;
+}
+
+.letter {
+  clear: left;
+}
