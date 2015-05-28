@@ -11,9 +11,8 @@
           %ul.dropdown-menu
             -@publishers.order(:name).each do |publisher|
               %li=link_to publisher.name, publisher_path(publisher)
-        -# %li.dropdown.nav=link_to 'Creators', creators_path
+        %li.dropdown.nav=link_to 'Creators', creators_path
       =form_tag search_path, class: 'navbar-form navbar-left', method: :get do
         .form-group
-          -# =label_tag :query, 'Search Comic Volumes'
           =text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Search Comic Volumes'
           =submit_tag 'Search', class: 'btn btn-default'

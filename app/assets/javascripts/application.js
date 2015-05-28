@@ -70,8 +70,13 @@ $(document).ready(function () {
     }, 800);
     $('.retract').hide();
     $('.expand').show();
-
   });
+
+  // $(document).on('click', '.letter', function(){
+  //   $('.creator-section').animate({
+  //     height: 'toggle'
+  //   },800);
+  // });
 
 });
 
