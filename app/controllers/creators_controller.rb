@@ -1,6 +1,6 @@
 class CreatorsController < ApplicationController
   def index
-    @creators = Creator.all
+    @creators = Creator.all.order(:name)
   end
 
   def show

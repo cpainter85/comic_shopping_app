@@ -13,4 +13,13 @@ feature 'Creators index page' do
     expect(page).to have_content creator.name
     expect(page).to have_content creator2.name
   end
+
+  scenario 'Clicking on creator name takes user to creator show page' do
+    creator = create_creator
+    visit creators_path
+
+    click_link creator.name
+
+    expect(current_path).to eq creator_path(creator)
+  end
 end

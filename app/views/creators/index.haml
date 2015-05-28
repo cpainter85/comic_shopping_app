@@ -1,2 +1,8 @@
--@creators.each do |creator|
-  =creator.name
+.container
+  .page-header
+    %h1 Creators
+  .well
+    .row
+      -@creators.each do |creator|
+        .col-md-4.index_element
+          %p.text-center=link_to creator.name, creator_path(creator)
