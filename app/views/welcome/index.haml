@@ -10,8 +10,10 @@
           .input-group
             =text_field_tag :query, params[:query], :class => 'search-box'
           =submit_tag 'Search', :class => 'btn btn-default search-button'
-
-    %p Browse Volumes by Publishers:
+    .browse-options
+      %p=link_to 'Browse All Creators', creators_path
+      %p -or-
+      %p Browse Volumes by Publishers:
     .row
       -@publishers.order(:name).each do |publisher|
 
