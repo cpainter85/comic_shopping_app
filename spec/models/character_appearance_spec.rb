@@ -4,7 +4,7 @@ describe CharacterAppearance do
   let(:publisher) { create_publisher }
   let(:volume) { create_volume(publisher) }
   let(:issue) { create_issue(volume) }
-  let(:character) { create_character }
+  let(:character) { create_character(publisher) }
   let(:character_appearance) { create_character_appearance(issue, character)}
 
   describe 'associations' do

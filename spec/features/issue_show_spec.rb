@@ -10,7 +10,7 @@ feature 'Issue show page' do
   let!(:for_sale_comic2) { create_for_sale_comic(issue, vendor2)}
   let!(:creator) {create_creator}
   let!(:issue_credit) {create_issue_credit(issue, creator)}
-  let(:character) { create_character(name: 'Wolverine') }
+  let(:character) { create_character(publisher, name: 'Wolverine') }
   let!(:character_appearance) { create_character_appearance(issue, character)}
 
   scenario 'Can visit issue show page from volume page' do

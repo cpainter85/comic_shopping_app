@@ -6,9 +6,16 @@ describe Publisher do
   describe 'associations' do
     let(:volume) { create_volume(publisher) }
     let(:volume2) { create_volume(publisher, name: 'Action Philosophers', comic_vine_vol_id: '555') }
+    let(:character) { create_character(publisher) }
+    let(:character2) { create_character(publisher, name: 'Wolverine', comic_vine_character_id: 77)}
     describe '#volume' do
       it 'returns the volumes for a given publisher' do
         expect(publisher.volumes).to eq([volume, volume2])
+      end
+    end
+    describe '#characters' do
+      it 'returns the characters belonging to a given publisher' do
+        expect(publisher.characters).to eq([character, character2])
       end
     end
   end

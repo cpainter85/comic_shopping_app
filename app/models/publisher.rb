@@ -1,7 +1,7 @@
 class Publisher < ActiveRecord::Base
 
   has_many :volumes, dependent: :destroy
-
+  has_many :characters
 
   validates :name, presence: true, uniqueness: true
   validates :comic_vine_pub_id, uniqueness: true

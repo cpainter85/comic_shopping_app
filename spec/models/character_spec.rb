@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe Character do
-  let(:character) { create_character }
+  let(:publisher) { create_publisher }
+  let(:character) { create_character(publisher) }
 
   describe 'associations' do
-    let(:publisher) { create_publisher }
     let(:volume) { create_volume(publisher) }
     let(:issue) { create_issue(volume) }
     let(:issue2) { create_issue(volume, issue_number: '2', comic_vine_issue_id: 88) }
@@ -20,6 +20,12 @@ describe Character do
     describe '#issues' do
       it 'returns the issues a character appears in' do
         expect(character.issues).to eq([issue, issue2])
+      end
+    end
+
+    describe '#publisher' do
+      it 'returns the publisher a character belongs to' do
+        expect(character.publisher).to eq(publisher)
       end
     end
   end

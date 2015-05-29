@@ -80,7 +80,7 @@ def create_for_sale_comic(issue, vendor, overrides={})
   }.merge(overrides))
 end
 
-def create_character(overrides={})
+def create_character(publisher, overrides={})
   Character.create!({
     name: 'Conan',
     real_name: 'Conan',
@@ -89,7 +89,8 @@ def create_character(overrides={})
     short_description: 'short description of Conan',
     full_description: 'long description of Conan',
     image_url: 'http://static.site.com/conan.jpg',
-    thumb_url: 'http://static.site.com/conan-thumb.jpg'
+    thumb_url: 'http://static.site.com/conan-thumb.jpg',
+    publisher_id: publisher.id
   }.merge(overrides))
 end
 

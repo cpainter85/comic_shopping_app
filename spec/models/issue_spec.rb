@@ -14,8 +14,8 @@ describe Issue do
     let(:vendor2) { create_vendor(name: 'Comixology') }
     let(:for_sale_comic) { create_for_sale_comic(issue, vendor) }
     let(:for_sale_comic2) { create_for_sale_comic(issue, vendor2) }
-    let(:character) { create_character }
-    let(:character2) { create_character(name: 'Superman', comic_vine_character_id: 11)}
+    let(:character) { create_character(publisher) }
+    let(:character2) { create_character(publisher, name: 'Superman', comic_vine_character_id: 11)}
     let!(:character_appearance) { create_character_appearance(issue, character) }
     let!(:character_appearance2) { create_character_appearance(issue, character2) }
 
