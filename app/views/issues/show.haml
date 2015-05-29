@@ -36,10 +36,10 @@
             -if !@issue.character_appearances.empty?
               .col-md-5
                 %h5 Character Appearances:
-                %ul
+                %ul.appearances
                   -@issue.characters.order(:name).each do |character|
                     %li=character.name
-
+                  .appearances-expansion
       -if @issue.cover_date
         %p
           %strong Cover Date:
