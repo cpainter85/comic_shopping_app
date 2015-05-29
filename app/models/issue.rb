@@ -56,7 +56,7 @@ class Issue < ActiveRecord::Base
           character.image_url = c['image']['small_url']
           character.thumb_url = c['image']['thumb_url']
         end
-        find_publisher = Publisher.find_by(comic_vine_pub_id: c['publisher']['id'])
+        find_publisher = c['publisher'] ? Publisher.find_by(comic_vine_pub_id: c['publisher']['id']) : nil
         character.publisher_id = find_publisher ? find_publisher.id : self.volume.publisher.id
         character.save
       end
