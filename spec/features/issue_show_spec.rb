@@ -10,6 +10,8 @@ feature 'Issue show page' do
   let!(:for_sale_comic2) { create_for_sale_comic(issue, vendor2)}
   let!(:creator) {create_creator}
   let!(:issue_credit) {create_issue_credit(issue, creator)}
+  let(:character) { create_character(name: 'Wolverine') }
+  let!(:character_appearance) { create_character_appearance(issue, character)}
 
   scenario 'Can visit issue show page from volume page' do
     visit publisher_volume_path(publisher, volume)
@@ -21,11 +23,12 @@ feature 'Issue show page' do
     expect(page).to have_css("img[src*='#{issue.cover_image_url}']")
     expect(page).to have_content issue.description
     expect(page).to have_content "#{creator.name} - #{issue_credit.role}"
+    expect(page).to have_content character.name
     expect(page).to have_content "Cover Date: #{issue.cover_date.strftime('%B %Y')}"
     expect(page).to have_content "Available for Purchase at #{vendor.name} for $#{for_sale_comic.price_in_cents.to_f/100}"
     expect(page).to have_content "Available for Purchase at #{vendor2.name} for $#{for_sale_comic2.price_in_cents.to_f/100}"
     expect(find_link('Return to Volume Overview')[:href]).to eq(publisher_volume_path(publisher, volume))
   end
 
-  
+
 end

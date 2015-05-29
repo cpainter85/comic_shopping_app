@@ -21,15 +21,25 @@
         -if @issue.description
           =strip_links(@issue.description_without_cover_info).html_safe
       .expansion-button
-        
-      -if !@issue.issue_credits.empty?
+
+      -if !@issue.issue_credits.empty? || !@issue.character_appearances.empty?
         .well
-          %h5 Issue Credits:
-          %ul
-            -@issue.issue_credits.each do |credit|
-              %li
-                =link_to "#{credit.creator.name}", creator_path(credit.creator)
-                ="- #{credit.role}"
+          .row
+            -if !@issue.issue_credits.empty?
+              .col-md-7
+                %h5 Issue Credits:
+                %ul
+                  -@issue.issue_credits.each do |credit|
+                    %li
+                      =link_to "#{credit.creator.name}", creator_path(credit.creator)
+                      ="- #{credit.role}"
+            -if !@issue.character_appearances.empty?
+              .col-md-5
+                %h5 Character Appearances:
+                %ul
+                  -@issue.characters.order(:name).each do |character|
+                    %li=character.name
+
       -if @issue.cover_date
         %p
           %strong Cover Date:
