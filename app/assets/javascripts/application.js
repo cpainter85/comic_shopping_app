@@ -106,6 +106,40 @@ $(document).ready(function () {
 
   });
 
+  if ($('.credits li').length > 20) {
+    $('.credits li').filter(function (index) {
+      return index > 15;
+    }).hide();
+    $('.credits-expansion').append('<span class="expand-credits glyphicon glyphicon-collapse-down"></span>')
+  };
+
+  $(document).on('click', '.expand-credits', function () {
+    if($('.retract-credits').length === 0) {
+      $('.credits-expansion').append('<span class="retract-credits glyphicon glyphicon-collapse-up"></span>');
+    }
+
+    $('.credits li').filter(function (index) {
+      return index > 15;
+    }).slideDown('slow', function () {
+    });
+
+    $('.expand-credits').hide();
+    $('.retract-credits').show();
+
+  });
+
+  $(document).on('click', '.retract-credits', function () {
+
+    $('.credits li').filter(function (index) {
+      return index > 15;
+    }).slideUp('slow', function () {
+    });
+
+    $('.expand-credits').show();
+    $('.retract-credits').hide();
+
+  });
+
 });
 
 // on hover html property with text
