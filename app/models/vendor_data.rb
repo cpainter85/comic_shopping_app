@@ -62,6 +62,46 @@ class VendorData < ActiveRecord::Base
     end
   end
 
+  # def self.image_retrieve_comics(volume)
+  #   volume.issues.order(:id).each do |issue|
+  #     issue_url = "https://imagecomics.com/comics/releases/#{issue.volume.name.gsub(' ', '-')}-#{issue.issue_number}"
+  #     doc = Nokogiri::HTML(open(issue_url))
+  #     comic = VendorData.new
+  #     comic.url = issue_url
+  #     comic.title = issue.issue_number
+  #     if doc.at('.price:contains("Digital")')
+  #       price = doc.at('.price:contains("Digital")').text
+  #     else
+  #       price = doc.css('.price').text
+  #     end
+  #     price_in_cents = (price.slice(price.index('$')+1..price.length).to_f*100).to_i
+  #     comic.price_in_cents = price_in_cents
+  #     comic.save
+  #   end
+  # end
+
+  def self.image_retrieve_comics(volume)
+    volume.issues.order(:id).each do |issue|
+      issue_url = "https://imagecomics.com/store/comics/#{issue.volume.name.gsub(' ', '-')}-#{issue.issue_number}"
+      doc = Nokogiri::HTML(open(issue_url))
+      comic = VendorData.new
+      comic.url = issue_url
+      comic.title = issue.issue_number
+      comic.price_in_cents = (doc.css('.price').text.delete('$').to_f*100).to_i
+      comic.save
+    end
+  end
+
+  def image_make_for_sale(volume)
+    issue = Volume.find(volume).issues.find_by(issue_number: self.title)
+    if issue
+      for_sale = issue.for_sale_comics.new(vendor_id: Vendor.find_by(name: 'Image Comics Digital').id)
+      for_sale.price_in_cents = self.price_in_cents
+      for_sale.url = self.url
+      for_sale.save
+    end
+  end
+
   def self.comixology_retrieve_comics(url)
     doc = Nokogiri::HTML(open(url))
 
