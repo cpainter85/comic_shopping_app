@@ -1,6 +1,28 @@
-=@character.name
-=@character.short_description
-=image_tag @character.image_url
-List of Appearances
--@character.issues.each do |issue|
-  =issue.full_title_with_year
+.container
+  .page-header
+    %h1=@character.name
+
+  .row
+    .col-md-6
+      %p=image_tag(@character.image_url ? @character.image_url : 'no_image_available_cover.jpg', class: 'cover_image')
+      -if @character.real_name
+        %p
+          %strong Real Name:
+          =@character.real_name
+      -if @character.aliases
+        %p
+          %strong Aliases:
+          =@character.aliases.gsub(/\n/, ', ')
+      -if @character.short_description
+        %p
+          %strong Description:
+          =strip_links(@character.short_description).html_safe
+
+    .container
+      .col-md-6
+        .well
+          %h5="List of Appearances (#{pluralize(@character.issues.count, 'Issues')})"
+          %ul
+            -@character.character_appearances.map{|credit| [credit.issue.volume.name, credit.issue.issue_number.to_i, credit]}.sort_by{|title, number| [title, number]}.each do |credit|
+              %li
+                =link_to credit.last.issue.full_title_with_year, publisher_volume_issue_path(credit.last.issue.volume.publisher, credit.last.issue.volume, credit.last.issue)
