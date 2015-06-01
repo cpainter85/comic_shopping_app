@@ -1,7 +1,7 @@
 def create_publisher(overrides = {})
   Publisher.create!({
     name: 'Dark Horse Comics',
-    comic_vine_pub_id: 364,
+    comic_vine_pub_id: rand(1..1000),
     website: 'http://www.darkhorse.com',
     short_description: 'Short description about Dark Horse',
     full_description: 'Longer description',
@@ -14,7 +14,7 @@ def create_volume(publisher, overrides = {})
   Volume.create!({
     name: 'Conan the Barbarian',
     publisher_id: publisher.id,
-    comic_vine_vol_id: 44351,
+    comic_vine_vol_id: rand(1..1000),
     description: 'Description of series',
     image_url: 'http://static.site.com/conan.gif',
     thumbnail_url: 'http://static.site.com/conan-thumb.gif',
@@ -55,7 +55,7 @@ end
 def create_creator(overrides={})
   Creator.create!({
     name: 'Becky Cloonan',
-    comic_vine_creator_id: 48209,
+    comic_vine_creator_id: rand(1..1000),
     short_description: 'short description',
     full_description: 'long description',
     profile_picture_url: 'http://static.page.com/beckycloonan.gif',
@@ -85,7 +85,7 @@ def create_character(publisher, overrides={})
     name: 'Conan',
     real_name: 'Conan',
     aliases: 'Conan the Barbarian\nAmra the Lion\nConan the Cimmerian\nKing Conan',
-    comic_vine_character_id: 2438,
+    comic_vine_character_id: rand(1..1000),
     short_description: 'short description of Conan',
     full_description: 'long description of Conan',
     image_url: 'http://static.site.com/conan.jpg',

@@ -31,5 +31,5 @@
       .row
         -@publisher.characters.order(:name).each do |character|
           .col-md-4.index_element
-            %p.text-center.thumb=link_to image_tag(character.thumb_url && character.thumb_url != 'http://static.comicvine.com/uploads/scale_avatar/0/1/1-male-good-large.jpg' && !(character.thumb_url.include? 'question_mark')? character.image_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), publisher_character_path(@publisher, character)
+            %p.text-center.thumb=link_to image_tag(character.thumb_url && character.thumb_url != 'http://static.comicvine.com/uploads/scale_avatar/0/1/1-male-good-large.jpg' && !(character.thumb_url.include? 'question_mark')? character.thumb_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), publisher_character_path(@publisher, character)
             %p.text-center=link_to character.name, publisher_character_path(@publisher, character)
