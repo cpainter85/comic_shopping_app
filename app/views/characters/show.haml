@@ -4,7 +4,7 @@
 
   .row
     .col-md-6
-      %p=image_tag(@character.image_url ? @character.image_url : 'no_image_available_cover.jpg', class: 'cover_image')
+      %p=image_tag(@character.image_url && @character.image_url != 'http://static.comicvine.com/uploads/scale_small/0/1/1-male-good-large.jpg' && !(@character.image_url.include? 'question_mark') ? @character.image_url : 'no_image_available_cover.jpg', class: 'cover_image')
       -if @character.real_name
         %p
           %strong Real Name:
