@@ -7,7 +7,7 @@ describe Issue do
 
   describe 'associations' do
     let(:creator) { create_creator }
-    let(:creator2) { create_creator(name: 'Brian Wood', comic_vine_creator_id: 22) }
+    let(:creator2) { create_creator(name: 'Brian Wood') }
     let!(:issue_credit) { create_issue_credit(issue, creator) }
     let!(:issue_credit2) { create_issue_credit(issue, creator2) }
     let(:vendor) { create_vendor }
@@ -15,7 +15,7 @@ describe Issue do
     let(:for_sale_comic) { create_for_sale_comic(issue, vendor) }
     let(:for_sale_comic2) { create_for_sale_comic(issue, vendor2) }
     let(:character) { create_character(publisher) }
-    let(:character2) { create_character(publisher, name: 'Superman', comic_vine_character_id: 11)}
+    let(:character2) { create_character(publisher, name: 'Superman')}
     let!(:character_appearance) { create_character_appearance(issue, character) }
     let!(:character_appearance2) { create_character_appearance(issue, character2) }
 
