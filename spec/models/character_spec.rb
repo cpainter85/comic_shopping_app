@@ -7,7 +7,7 @@ describe Character do
   describe 'associations' do
     let(:volume) { create_volume(publisher) }
     let(:issue) { create_issue(volume) }
-    let(:issue2) { create_issue(volume, issue_number: '2', comic_vine_issue_id: 88) }
+    let(:issue2) { create_issue(volume, issue_number: '2') }
     let!(:character_appearance) { create_character_appearance(issue, character) }
     let!(:character_appearance2) { create_character_appearance(issue2, character) }
 
@@ -44,10 +44,16 @@ describe Character do
     end
 
     it 'validates the uniqueness of a comic vine id' do
-      character2 = Character.new(comic_vine_character_id: character.comic_vine_character_id, name: 'Wolverine')
+      character2 = Character.new(publisher_id: publisher.id, comic_vine_character_id: character.comic_vine_character_id, name: 'Wolverine')
       character2.save
       expect(character2.errors.any?).to eq(true)
       expect(character2.errors.messages).to eq(comic_vine_character_id: ['has already been taken'])
+    end
+
+    it 'validates the presence of a publisher id' do
+      character.update_attributes(publisher_id: nil)
+      expect(character.errors.any?).to eq(true)
+      expect(character.errors.messages).to eq(publisher_id: ['can\'t be blank'])
     end
   end
 end

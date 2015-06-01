@@ -4,5 +4,6 @@ class Character < ActiveRecord::Base
   belongs_to :publisher
 
   validates :name, presence: true
+  validates :publisher_id, presence: true
   validates :comic_vine_character_id, presence: true, uniqueness: true
 end

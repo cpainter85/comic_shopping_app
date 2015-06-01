@@ -26,7 +26,7 @@ def create_issue(volume, overrides={})
   Issue.create!({
     volume_id: volume.id,
     issue_number: '1',
-    comic_vine_issue_id: 314965,
+    comic_vine_issue_id: rand(1..1000),
     description: 'Issue description',
     cover_image_url: 'http://static.site.com/conan1.gif',
     thumbnail_url: 'http://static.site.com/conan1-thumb.gif',
