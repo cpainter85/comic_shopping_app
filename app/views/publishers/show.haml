@@ -9,11 +9,27 @@
       %p
         %strong Website:
         =link_to @publisher.website, @publisher.website
-      -# %p=strip_links(@publisher.full_description).html_safe
-  %h3="Volumes:"
-  .well
+  .browse-buttons
     .row
-      -@publisher.volumes.sort {|a,b| a.name_with_date <=> b.name_with_date}.each do |volume|
-        .col-md-4.index_element
-          %p.text-center.thumb=link_to image_tag(volume.thumbnail_url ? volume.thumbnail_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), publisher_volume_path(@publisher, volume)
-          %p.text-center=link_to volume.name_with_date, publisher_volume_path(@publisher, volume)
+      .col-md-offset-2.col-md-3
+        %button.btn.btn-success.btn-lg-btn-block.btn-volumes Browse by Volumes
+      .col-md-offset-3.col-md-3
+        %button.btn.btn-success.btn-lg-btn-block.btn-characters Browse by Characters
+
+  .pub-volumes
+    %h3="Volumes:"
+    .well
+      .row
+        -@publisher.volumes.sort {|a,b| a.name_with_date <=> b.name_with_date}.each do |volume|
+          .col-md-4.index_element
+            %p.text-center.thumb=link_to image_tag(volume.thumbnail_url ? volume.thumbnail_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), publisher_volume_path(@publisher, volume)
+            %p.text-center=link_to volume.name_with_date, publisher_volume_path(@publisher, volume)
+
+  .pub-characters
+    %h3="Characters:"
+    .well
+      .row
+        -@publisher.characters.order(:name).each do |character|
+          .col-md-4.index_element
+            %p.text-center.thumb=link_to image_tag(character.thumb_url && character.thumb_url != 'http://static.comicvine.com/uploads/scale_avatar/0/1/1-male-good-large.jpg' && !(character.thumb_url.include? 'question_mark')? character.image_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), publisher_character_path(@publisher, character)
+            %p.text-center=link_to character.name, publisher_character_path(@publisher, character)

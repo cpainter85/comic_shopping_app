@@ -140,6 +140,17 @@ $(document).ready(function () {
 
   });
 
+  $('.pub-characters').hide();
+
+  $(document).on('click', '.btn-characters', function () {
+    $('.pub-volumes').hide();
+    $('.pub-characters').show();
+  });
+
+  $(document).on('click', '.btn-volumes', function () {
+    $('.pub-characters').hide();
+    $('.pub-volumes').show();
+  });
 });
 
 // on hover html property with text
