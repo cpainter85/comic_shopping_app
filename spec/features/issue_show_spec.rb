@@ -30,5 +30,16 @@ feature 'Issue show page' do
     expect(find_link('Return to Volume Overview')[:href]).to eq(publisher_volume_path(publisher, volume))
   end
 
+  scenario 'Can visit character show page from issue show page' do
+    visit publisher_volume_issue_path(publisher, volume, issue)
+    click_link character.name
+    expect(current_path).to eq publisher_character_path(publisher, character)
+
+    expect(page).to have_content character.name
+    expect(page).to have_content character.short_description
+    expect(page).to have_css("img[src*='#{character.image_url}']")
+    expect(page).to have_content 'List of Appearances'
+    expect(page).to have_content issue.full_title_with_year
+  end
 
 end

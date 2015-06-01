@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :publishers, only: [:show] do
+    resources :characters, only: [:show]
     resources :volumes, only: [:show] do
       resources :issues, only: [:show]
     end

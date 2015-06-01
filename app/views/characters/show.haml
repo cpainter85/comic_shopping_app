@@ -1,0 +1,6 @@
+=@character.name
+=@character.short_description
+=image_tag @character.image_url
+List of Appearances
+-@character.issues.each do |issue|
+  =issue.full_title_with_year

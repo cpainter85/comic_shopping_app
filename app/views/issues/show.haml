@@ -39,7 +39,7 @@
                 %h5 Character Appearances:
                 %ul.appearances
                   -@issue.characters.order(:name).each do |character|
-                    %li=character.name
+                    %li=link_to character.name, publisher_character_path(@publisher, character)
                   .appearances-expansion
       -if @issue.cover_date
         %p
