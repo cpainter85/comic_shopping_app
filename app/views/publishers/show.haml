@@ -10,12 +10,8 @@
         %strong Website:
         =link_to @publisher.website, @publisher.website
   .browse-buttons
-    .row
-      .col-md-offset-2.col-md-3
-        %button.btn.btn-success.btn-lg-btn-block.btn-volumes Browse by Volumes
-      .col-md-offset-3.col-md-3
-        %button.btn.btn-success.btn-lg-btn-block.btn-characters Browse by Characters
-
+    %button.btn.btn-success.btn-lg-btn-block.btn-characters.btn-pub-toggle.pull-right Browse by Characters
+    %button.btn.btn-success.btn-lg-btn-block.btn-volumes.btn-pub-toggle.pull-right Browse by Volumes
   .pub-volumes
     %h3="Volumes:"
     .well

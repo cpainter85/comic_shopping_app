@@ -141,15 +141,28 @@ $(document).ready(function () {
   });
 
   $('.pub-characters').hide();
+  $('.btn-volumes').hide();
+
+  // $(document).on('click', '.btn-pub-toggle', function () {
+  //   console.log('toggle!');
+  //   $('.pub-volumes').toggle();
+  //   $('.pub-characters').toggle();
+  //   $('.btn-characters').toggle();
+  //   $('.btn-volumes').toggle();
+  // });
 
   $(document).on('click', '.btn-characters', function () {
-    $('.pub-volumes').hide();
     $('.pub-characters').show();
+    $('.pub-volumes').hide();
+    $('.btn-characters').hide();
+    $('.btn-volumes').show();
   });
 
   $(document).on('click', '.btn-volumes', function () {
     $('.pub-characters').hide();
     $('.pub-volumes').show();
+    $('.btn-characters').show();
+    $('.btn-volumes').hide();
   });
 });
 
