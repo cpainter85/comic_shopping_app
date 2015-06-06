@@ -41,6 +41,11 @@ body {
   width: 150px;
 }
 
+.creator_index_element {
+  height: 300px;
+  width: 150px;
+}
+
 .thumb {
   height: 170px;
   width: 116px;
@@ -145,15 +150,15 @@ body {
   margin: 5px;
 }
 
-.creator-name {
-  float: left;
-  margin: 10px 3%;
-  width: 18%;
-}
-
-.creator-name:nth-child(4n):after {
-  clear: left;
-}
+// .creator-name {
+//   float: left;
+//   margin: 10px 3%;
+//   width: 18%;
+// }
+//
+// .creator-name:nth-child(4n):after {
+//   clear: left;
+// }
 
 .letter {
   clear: left;
