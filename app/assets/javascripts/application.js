@@ -164,6 +164,40 @@ $(document).ready(function () {
     $('.btn-characters').show();
     $('.btn-volumes').hide();
   });
+
+  var volumeResults = $('.results-volumes').children();
+  var creatorResults = $('.results-creators').children();
+  var characterResults = $('.results-characters').children();
+
+  $(document).on('click', '.filter-volumes', function () {
+    $('.result-header').text('Search Results (Volumes)')
+    $('.results-volumes').show();
+    $('.results-creators').hide();
+    $('.results-characters').hide();
+  });
+
+  $(document).on('click', '.filter-creators', function () {
+    $('.result-header').text('Search Results (Creators)')
+    $('.results-volumes').hide();
+    $('.results-creators').show();
+    $('.results-characters').hide();
+  });
+
+  $(document).on('click', '.filter-characters', function () {
+    $('.result-header').text('Search Results (Characters)')
+
+    $('.results-volumes').hide();
+    $('.results-creators').hide();
+    $('.results-characters').show();
+  });
+
+  $(document).on('click', '.filter-none', function () {
+    $('.result-header').text('Search Results (All)')
+
+    $('.results-volumes').show();
+    $('.results-creators').show();
+    $('.results-characters').show();
+  });
 });
 
 // on hover html property with text
