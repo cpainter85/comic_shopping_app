@@ -1,0 +1,18 @@
+.container
+  .page-header
+    %h1 Search Results
+
+
+  .well
+    .row
+      -@results.each do |result|
+        .col-md-4.index_element
+          -if result.searchable_type == 'Volume'
+            %p.text-center.thumb=link_to(image_tag(result.searchable.thumbnail_url ? result.searchable.thumbnail_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), publisher_volume_path(result.searchable.publisher_id, result.searchable.id))
+            %p.text-center=link_to("#{result.searchable.name} (#{result.searchable.start_year})", publisher_volume_path(result.searchable.publisher_id, result.searchable.id))
+          -elsif result.searchable_type == 'Creator'
+            %p.text-center.thumb=link_to(image_tag(result.searchable.profile_picture_thumb_url && result.searchable.profile_picture_thumb_url != 'http://static.comicvine.com/uploads/scale_avatar/0/1/1-male-good-large.jpg' ? result.searchable.profile_picture_thumb_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), creator_path(result.searchable.id))
+            %p.text-center=link_to("#{result.searchable.name}", creator_path(result.searchable.id))
+          -else
+            %p.text-center.thumb=link_to(image_tag(result.searchable.thumb_url && result.searchable.thumb_url != 'http://static.comicvine.com/uploads/scale_avatar/0/1/1-male-good-large.jpg' && !(result.searchable.thumb_url.include? 'question_mark') ? result.searchable.thumb_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), publisher_character_path(result.searchable.publisher_id, result.searchable.id))
+            %p.text-center=link_to("#{result.searchable.name}", publisher_character_path(result.searchable.publisher_id, result.searchable.id))

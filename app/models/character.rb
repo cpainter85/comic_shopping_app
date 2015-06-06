@@ -1,4 +1,9 @@
 class Character < ActiveRecord::Base
+
+  include PgSearch
+
+  multisearchable against: [:name, :real_name, :aliases, :short_description, :thumb_url, :publisher_id]
+
   has_many :character_appearances, dependent: :destroy
   has_many :issues, through: :character_appearances
   belongs_to :publisher
