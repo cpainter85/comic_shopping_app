@@ -5,7 +5,7 @@
     .well.search-well
       =form_tag search_path, class: 'form-inline', method: :get do
         .form-group
-          =label_tag :query, 'Search Comic Volumes (Series)', class:  'search-label'
+          =label_tag :query, 'Search Volumes, Creators, and Characters', class:  'search-label'
 
           .input-group
             =text_field_tag :query, params[:query], :class => 'search-box'
@@ -13,7 +13,7 @@
     .browse-options
       %p=link_to 'Browse All Creators', creators_path
       %p -or-
-      %p Browse Volumes by Publishers:
+      %p Browse Volumes and Characters by Publishers:
     .row
       -@publishers.order(:name).each do |publisher|
 

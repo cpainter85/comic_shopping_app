@@ -14,5 +14,5 @@
         %li.dropdown.nav=link_to 'Creators', creators_path
       =form_tag search_path, class: 'navbar-form navbar-left', method: :get do
         .form-group
-          =text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Search Comic Volumes'
+          =text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Search'
           =submit_tag 'Search', class: 'btn btn-default'
