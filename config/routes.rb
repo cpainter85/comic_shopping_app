@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/search', to: 'volumes#search', as: 'search'
+  get '/search', to: 'search#search', as: 'search'
 
   resources :creators, only: [:index, :show]
   # The priority is based upon order of creation: first created -> highest priority.

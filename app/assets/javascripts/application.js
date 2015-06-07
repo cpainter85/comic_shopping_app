@@ -164,6 +164,60 @@ $(document).ready(function () {
     $('.btn-characters').show();
     $('.btn-volumes').hide();
   });
+
+  $('.filter-none').hide();
+
+  $(document).on('click', '.filter-volumes', function () {
+    $('.result-header').text('Search Results (Volumes)');
+
+    $('.filter-volumes').hide();
+    $('.filter-creators').show();
+    $('.filter-characters').show();
+    $('.filter-none').show();
+
+    $('.results-volumes').show();
+    $('.results-creators').hide();
+    $('.results-characters').hide();
+  });
+
+  $(document).on('click', '.filter-creators', function () {
+    $('.result-header').text('Search Results (Creators)')
+
+    $('.filter-volumes').show();
+    $('.filter-creators').hide();
+    $('.filter-characters').show();
+    $('.filter-none').show();
+
+    $('.results-volumes').hide();
+    $('.results-creators').show();
+    $('.results-characters').hide();
+  });
+
+  $(document).on('click', '.filter-characters', function () {
+    $('.result-header').text('Search Results (Characters)')
+
+    $('.filter-volumes').show();
+    $('.filter-creators').show();
+    $('.filter-characters').hide();
+    $('.filter-none').show();
+
+    $('.results-volumes').hide();
+    $('.results-creators').hide();
+    $('.results-characters').show();
+  });
+
+  $(document).on('click', '.filter-none', function () {
+    $('.result-header').text('Search Results (All)')
+
+    $('.filter-volumes').show();
+    $('.filter-creators').show();
+    $('.filter-characters').show();
+    $('.filter-none').hide();
+
+    $('.results-volumes').show();
+    $('.results-creators').show();
+    $('.results-characters').show();
+  });
 });
 
 // on hover html property with text
