@@ -1,12 +1,13 @@
 .container
 
   .page-header
+    .button-filters
+      %button.btn.btn-primary.btn-lg.filter.filter-none.pull-right='Show All Results'
+      %button.btn.btn-primary.btn-lg.filter.filter-characters.pull-right='Show Only Characters'
+      %button.btn.btn-primary.btn-lg.filter.filter-creators.pull-right='Show Only Creators'
+      %button.btn.btn-primary.btn-lg.filter.filter-volumes.pull-right='Show Only Volumes'
     %h1.result-header Search Results (All)
-  .filter-buttons
-    %button.btn.btn-primary.btn-lg.filter.filter-volumes='Show Only Volumes'
-    %button.btn.btn-primary.btn-lg.filter.filter-creators='Show Only Creators'
-    %button.btn.btn-primary.btn-lg.filter.filter-characters='Show Only Characters'
-    %button.btn.btn-primary.btn-lg.filter.filter-none='Show All Results'
+
 
   .well
     .row

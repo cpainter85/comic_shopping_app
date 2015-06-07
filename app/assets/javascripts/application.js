@@ -165,12 +165,16 @@ $(document).ready(function () {
     $('.btn-volumes').hide();
   });
 
-  var volumeResults = $('.results-volumes').children();
-  var creatorResults = $('.results-creators').children();
-  var characterResults = $('.results-characters').children();
+  $('.filter-none').hide();
 
   $(document).on('click', '.filter-volumes', function () {
-    $('.result-header').text('Search Results (Volumes)')
+    $('.result-header').text('Search Results (Volumes)');
+
+    $('.filter-volumes').hide();
+    $('.filter-creators').show();
+    $('.filter-characters').show();
+    $('.filter-none').show();
+
     $('.results-volumes').show();
     $('.results-creators').hide();
     $('.results-characters').hide();
@@ -178,6 +182,12 @@ $(document).ready(function () {
 
   $(document).on('click', '.filter-creators', function () {
     $('.result-header').text('Search Results (Creators)')
+
+    $('.filter-volumes').show();
+    $('.filter-creators').hide();
+    $('.filter-characters').show();
+    $('.filter-none').show();
+
     $('.results-volumes').hide();
     $('.results-creators').show();
     $('.results-characters').hide();
@@ -186,6 +196,11 @@ $(document).ready(function () {
   $(document).on('click', '.filter-characters', function () {
     $('.result-header').text('Search Results (Characters)')
 
+    $('.filter-volumes').show();
+    $('.filter-creators').show();
+    $('.filter-characters').hide();
+    $('.filter-none').show();
+
     $('.results-volumes').hide();
     $('.results-creators').hide();
     $('.results-characters').show();
@@ -193,6 +208,11 @@ $(document).ready(function () {
 
   $(document).on('click', '.filter-none', function () {
     $('.result-header').text('Search Results (All)')
+
+    $('.filter-volumes').show();
+    $('.filter-creators').show();
+    $('.filter-characters').show();
+    $('.filter-none').hide();
 
     $('.results-volumes').show();
     $('.results-creators').show();
