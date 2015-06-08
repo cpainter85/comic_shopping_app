@@ -152,15 +152,15 @@ $(document).ready(function () {
   // });
 
   $(document).on('click', '.btn-characters', function () {
-    $('.pub-characters').fadeIn();
-    $('.pub-volumes').fadeOut();
+    $('.pub-characters').fadeIn('slow');
+    $('.pub-volumes').hide();
     $('.btn-characters').hide();
     $('.btn-volumes').show();
   });
 
   $(document).on('click', '.btn-volumes', function () {
-    $('.pub-characters').fadeOut();
-    $('.pub-volumes').fadeIn();
+    $('.pub-characters').hide();
+    $('.pub-volumes').fadeIn('slow');
     $('.btn-characters').show();
     $('.btn-volumes').hide();
   });
