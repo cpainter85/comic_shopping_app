@@ -175,9 +175,11 @@ $(document).ready(function () {
     $('.filter-characters').show();
     $('.filter-none').show();
 
-    $('.results-volumes').show();
+    $('.results-volumes').hide();
     $('.results-creators').hide();
     $('.results-characters').hide();
+
+    $('.results-volumes').fadeIn('slow');
   });
 
   $(document).on('click', '.filter-creators', function () {
@@ -189,8 +191,11 @@ $(document).ready(function () {
     $('.filter-none').show();
 
     $('.results-volumes').hide();
-    $('.results-creators').show();
+    $('.results-creators').hide();
     $('.results-characters').hide();
+
+    $('.results-creators').fadeIn('slow');
+
   });
 
   $(document).on('click', '.filter-characters', function () {
@@ -203,7 +208,10 @@ $(document).ready(function () {
 
     $('.results-volumes').hide();
     $('.results-creators').hide();
-    $('.results-characters').show();
+    $('.results-characters').hide();
+
+    $('.results-characters').fadeIn('slow');
+
   });
 
   $(document).on('click', '.filter-none', function () {
@@ -214,9 +222,13 @@ $(document).ready(function () {
     $('.filter-characters').show();
     $('.filter-none').hide();
 
-    $('.results-volumes').show();
-    $('.results-creators').show();
-    $('.results-characters').show();
+    $('.results-volumes').hide();
+    $('.results-creators').hide();
+    $('.results-characters').hide();
+
+    $('.results-volumes').fadeIn('slow');
+    $('.results-creators').fadeIn('slow');
+    $('.results-characters').fadeIn('slow');
   });
 });
 
