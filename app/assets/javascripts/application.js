@@ -143,29 +143,4 @@ $(document).ready(function () {
     $('.retract-credits').hide();
 
   });
-
-  $('.pub-characters').hide();
-  $('.btn-volumes').hide();
-
-  // $(document).on('click', '.btn-pub-toggle', function () {
-  //   console.log('toggle!');
-  //   $('.pub-volumes').toggle();
-  //   $('.pub-characters').toggle();
-  //   $('.btn-characters').toggle();
-  //   $('.btn-volumes').toggle();
-  // });
-
-  $(document).on('click', '.btn-characters', function () {
-    $('.pub-characters').fadeIn('slow');
-    $('.pub-volumes').hide();
-    $('.btn-characters').hide();
-    $('.btn-volumes').show();
-  });
-
-  $(document).on('click', '.btn-volumes', function () {
-    $('.pub-characters').hide();
-    $('.pub-volumes').fadeIn('slow');
-    $('.btn-characters').show();
-    $('.btn-volumes').hide();
-  });
 });
