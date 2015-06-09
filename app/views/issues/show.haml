@@ -4,12 +4,12 @@
       .text-center
         .pull-left
           -if @issue.get_previous_issue != nil
-            =link_to '', publisher_volume_issue_path(@publisher, @volume,@issue.get_previous_issue), class: 'glyphicon glyphicon-chevron-left'
+            =link_to '', publisher_volume_issue_path(@publisher, @volume,@issue.get_previous_issue), class: 'glyphicon glyphicon-chevron-left previous-issue'
         =link_to "#{@volume.name}", publisher_volume_path(@publisher, @volume)
         =" \# #{@issue.issue_number} "
         .pull-right
           -if @issue.get_next_issue != nil
-            =link_to '', publisher_volume_issue_path(@publisher, @volume,@issue.get_next_issue), class: 'glyphicon glyphicon-chevron-right'
+            =link_to '', publisher_volume_issue_path(@publisher, @volume,@issue.get_next_issue), class: 'glyphicon glyphicon-chevron-right next-issue'
     %h4
       .text-center
         ="#{!(@issue.story_name == nil) && !@issue.story_name.empty? ? @issue.story_name : ''}"
