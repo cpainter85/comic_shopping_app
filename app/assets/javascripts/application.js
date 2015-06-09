@@ -235,26 +235,23 @@ $(document).ready(function () {
     $('.results-characters').fadeIn('slow');
   });
 
-  // $('.show-all').hide()
-
   $(document).on('click', '.alpha-letter', function () {
     $('.ind-character').hide();
-    $('.selected-letter').removeClass('selected-letter');
+    $('.label-primary').removeClass('label-primary').addClass('label-default');
 
-    $(this).addClass('selected-letter');
+    $(this).removeClass('label-default').addClass('label-primary');
     var filterLetter = $(this).text().trim();
     $('.ind-character').filter(function () {
       console.log(filterLetter === $(this).children().last().text()[0]);
       return filterLetter === $(this).children().last().text()[0];
     }).fadeIn();
-    // $('.show-all').show();
   });
 
   $(document).on('click', '.show-all', function () {
-    $('.selected-letter').removeClass('selected-letter');
-    $(this).addClass('selected-letter');
+    $('.ind-character').hide();
+    $('.label-primary').removeClass('label-primary').addClass('label-default');
+    $(this).removeClass('label-default').addClass('label-primary');
     $('.ind-character').fadeIn();
-    // $('.show-all').hide();
   });
 
 });
