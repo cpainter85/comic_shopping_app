@@ -18,6 +18,8 @@
 //= require jquery.turbolinks
 
 $(document).ready(function () {
+
+  // Go to next issue
   if ($('.glyphicon-chevron-right').length === 1) {
     $('body').keydown(function (key) {
       if (key.which === 39) {
@@ -30,6 +32,7 @@ $(document).ready(function () {
     })
   }
 
+  // Go to previous issue
   if ($('.glyphicon-chevron-left').length === 1) {
     $('body').keydown(function (key) {
       if (key.which === 37) {
@@ -42,7 +45,7 @@ $(document).ready(function () {
     })
   }
 
-
+  //hide and expand descriptions
   if ($('.full-description').prop('scrollHeight') > $('.full-description').height()) {
     $('.expansion-button').append('<span class="expand glyphicon glyphicon-collapse-down"></span>')
   }
@@ -72,6 +75,7 @@ $(document).ready(function () {
     $('.expand').show();
   });
 
+  //hide and expand character appearances
   if ($('.appearances li').length > 20) {
     $('.appearances li').filter(function (index) {
       return index > 15;
@@ -230,8 +234,27 @@ $(document).ready(function () {
     $('.results-creators').fadeIn('slow');
     $('.results-characters').fadeIn('slow');
   });
-});
 
-// on hover html property with text
-// form with a prepopulating hidden field, ajax call
-// rails ajax guide -> send it to an action remote true
+  // $('.show-all').hide()
+
+  $(document).on('click', '.alpha-letter', function () {
+    $('.ind-character').hide();
+    $('.selected-letter').removeClass('selected-letter');
+
+    $(this).addClass('selected-letter');
+    var filterLetter = $(this).text().trim();
+    $('.ind-character').filter(function () {
+      console.log(filterLetter === $(this).children().last().text()[0]);
+      return filterLetter === $(this).children().last().text()[0];
+    }).fadeIn();
+    // $('.show-all').show();
+  });
+
+  $(document).on('click', '.show-all', function () {
+    $('.selected-letter').removeClass('selected-letter');
+    $(this).addClass('selected-letter');
+    $('.ind-character').fadeIn();
+    // $('.show-all').hide();
+  });
+
+});

@@ -25,7 +25,15 @@
     %h3="Characters:"
     .well
       .row
+        .alpha-list.text-center
+          %h4
+            -@publisher.characters.order(:name).each_with_index do |character, index|
+              -if character.name[0] != @publisher.characters.order(:name)[index-1].name[0]
+                %span.alpha-letter="  #{character.name[0]}  "
+          %h4.show-all.selected-letter="*Show All*"
+
+      .row
         -@publisher.characters.order(:name).each do |character|
-          .col-md-4.index_element
+          .col-md-4.index_element.ind-character
             %p.text-center.thumb=link_to image_tag(character.thumb_url && character.thumb_url != 'http://static.comicvine.com/uploads/scale_avatar/0/1/1-male-good-large.jpg' && !(character.thumb_url.include? 'question_mark')? character.thumb_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), publisher_character_path(@publisher, character)
             %p.text-center=link_to character.name, publisher_character_path(@publisher, character)
