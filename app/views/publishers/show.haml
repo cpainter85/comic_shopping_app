@@ -27,9 +27,8 @@
       .row
         .alpha-list.text-center
           %h4
-            -@publisher.characters.order(:name).each_with_index do |character, index|
-              -if character.name[0] != @publisher.characters.order(:name)[index-1].name[0]
-                %span.label.label-default.alpha-letter="#{character.name[0]}"
+            -@letters.each do |letter|
+              %span.label.label-default.alpha-letter=letter
             .show-all.label.label-primary="All"
 
       .row
