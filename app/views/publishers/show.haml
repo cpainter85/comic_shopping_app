@@ -29,7 +29,7 @@
           %h4
             -@publisher.characters.order(:name).each_with_index do |character, index|
               -if character.name[0] != @publisher.characters.order(:name)[index-1].name[0]
-                %span.label.label-default.alpha-letter="  #{character.name[0]}  "
+                %span.label.label-default.alpha-letter="#{character.name[0]}"
             .show-all.label.label-primary="All"
 
       .row
