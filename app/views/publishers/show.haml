@@ -29,7 +29,7 @@
           %h4
             -@letters.each do |letter|
               %span.label.label-default.alpha-letter=letter
-            .show-all.label.label-primary="All"
+            .show-all.alpha-letter.label.label-primary="All"
 
       .row
         -@publisher.characters.order(:name).each do |character|
