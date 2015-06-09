@@ -13,23 +13,29 @@
     %button.btn.btn-default.btn-characters.btn-pub-toggle.pull-right Browse by Characters
     %button.btn.btn-primary.btn-volumes.btn-pub-toggle.pull-right Browse by Volumes
   .pub.pub-volumes
-    %h3="Volumes:"
+    %h3='Volumes:'
     .well
       .row
+        .vol-alpha-list.text-center
+          %h4
+            -@vletters.each do |letter|
+              %span.label.label-default.vol-alpha-letter=letter
+            .vol-show-all.vol-alpha-letter.label.label-primary='All'
+      .row
         -@publisher.volumes.sort {|a,b| a.name_with_date <=> b.name_with_date}.each do |volume|
-          .col-md-4.index_element
+          .col-md-4.index_element.ind-volume
             %p.text-center.thumb=link_to image_tag(volume.thumbnail_url ? volume.thumbnail_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), publisher_volume_path(@publisher, volume)
             %p.text-center=link_to volume.name_with_date, publisher_volume_path(@publisher, volume)
 
   .pub.pub-characters
-    %h3="Characters:"
+    %h3='Characters:'
     .well
       .row
         .alpha-list.text-center
           %h4
             -@letters.each do |letter|
               %span.label.label-default.alpha-letter=letter
-            .show-all.alpha-letter.label.label-primary="All"
+            .show-all.alpha-letter.label.label-primary='All'
 
       .row
         -@publisher.characters.order(:name).each do |character|

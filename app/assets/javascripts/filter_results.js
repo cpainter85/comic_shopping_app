@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  // $('.filter-none').hide();
 
   $(document).on('click', '.filter', function () {
     $('.results').hide()
