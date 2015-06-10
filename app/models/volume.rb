@@ -64,7 +64,54 @@ class Volume < ActiveRecord::Base
           credit.role = creator['role']
           credit.save
         end
+
+        i.get_character_appearances(api_key)
       end
     end
+  end
+
+  def get_trade_ids_from_description
+    require 'nokogiri'
+    description = self.description
+    parse = Nokogiri::HTML(description)
+    resultIds = []
+    if parse.xpath('//a')
+      parse.xpath('//a').each do |link|
+        full_id = link.attributes['data-ref-id'].value
+        id = full_id.slice(full_id.index('-')+1..full_id.length)
+        resultIds.push(id)
+      end
+    else
+      nil
+    end
+    resultIds
+  end
+
+  def retrieve_trade_info_and_replace_link(api_key)
+    id_array = self.get_trade_ids_from_description
+    publisher = self.publisher
+    if id_array
+      id_array.each do |id|
+        volume = publisher.volumes.new(comic_vine_vol_id: id)
+        volume.get_vol_info(api_key)
+        volume.get_issues(api_key)
+      end
+      self.replace_link_in_description
+    end
+  end
+
+  def replace_link_in_description
+    require 'nokogiri'
+    description = self.description
+    parse = Nokogiri::HTML(description)
+    parse.xpath('//a').each do |link|
+      full_id = link.attributes['data-ref-id'].value
+      id = full_id.slice(full_id.index('-')+1..full_id.length)
+      lookup = Volume.find_by(comic_vine_vol_id: id)
+      new_link = "/publishers/#{self.publisher.id}/volumes/#{lookup.id}"
+      link.attributes['href'].value = new_link
+    end
+    self.description=parse
+    self.save
   end
 end

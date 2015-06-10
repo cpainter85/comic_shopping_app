@@ -16,7 +16,7 @@
       .col-md-6
         .full-description
           -if @volume.description
-            =strip_links(@volume.description).html_safe
+            =@volume.description.html_safe
         .expansion-button
         .well
           %h5="List of Issues (#{pluralize(@volume.issues.count, 'Issues')})"

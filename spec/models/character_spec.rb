@@ -50,10 +50,5 @@ describe Character do
       expect(character2.errors.messages).to eq(comic_vine_character_id: ['has already been taken'])
     end
 
-    it 'validates the presence of a publisher id' do
-      character.update_attributes(publisher_id: nil)
-      expect(character.errors.any?).to eq(true)
-      expect(character.errors.messages).to eq(publisher_id: ['can\'t be blank'])
-    end
   end
 end
