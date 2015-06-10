@@ -64,6 +64,7 @@ class Volume < ActiveRecord::Base
           credit.role = creator['role']
           credit.save
         end
+      i.get_character_appearances(api_key)
       end
     end
   end
