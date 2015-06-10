@@ -73,21 +73,23 @@ class Volume < ActiveRecord::Base
   def get_trade_ids_from_description
     require 'nokogiri'
     description = self.description
-    parse = Nokogiri::HTML(description)
-    resultIds = []
-    if parse.xpath('//a')
-      parse.xpath('//a').each do |link|
-        full_id = link.attributes['data-ref-id'].value
-        id = full_id.slice(full_id.index('-')+1..full_id.length)
-        resultIds.push(id)
+    if !(description.include? 'publisher')
+      parse = Nokogiri::HTML(description)
+      resultIds = []
+      if parse.xpath('//a')
+        parse.xpath('//a').each do |link|
+          full_id = link.attributes['data-ref-id'].value
+          id = full_id.slice(full_id.index('-')+1..full_id.length)
+          resultIds.push(id)
+        end
+      else
+        nil
       end
-    else
-      nil
+      resultIds
     end
-    resultIds
   end
 
-  def retrieve_trade_info_and_replace_link(api_key)
+  def retrieve_and_replace_link(api_key)
     id_array = self.get_trade_ids_from_description
     publisher = self.publisher
     if id_array
