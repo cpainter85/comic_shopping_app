@@ -1,9 +1,15 @@
 .container
   .page-header
     %h1 Creators
-  -@creators.each_with_index do |creator, index|
-    -if creator.name[0] != @creators[index-1].name[0]
-      %h5.letter.text-center="-#{creator.name[0]}-"
-    .col-md-4.creator_index_element
-      %p.text-center.thumb=link_to(image_tag(creator.profile_picture_thumb_url && creator.profile_picture_thumb_url != 'http://static.comicvine.com/uploads/scale_avatar/0/1/1-male-good-large.jpg'  && !(creator.profile_picture_thumb_url.include? 'question_mark') && !(creator.profile_picture_thumb_url.include? 'unknown')? creator.profile_picture_thumb_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), creator_path(creator))
-      %p.text-center=link_to creator.name, creator_path(creator), class: 'creator-name'
+  .well
+    .row
+      .creator-alpha-list.text-center
+        %h4
+          -@letters.each do |letter|
+            %span.label.label-default.creator-alpha-letter=letter
+          .creator-show-all.creator-alpha-letter.label.label-primary='All'
+    .row
+      -@creators.each do |creator|
+        .col-md-4.creator_index_element
+          %p.text-center.thumb=link_to(image_tag(creator.profile_picture_thumb_url && creator.profile_picture_thumb_url != 'http://static.comicvine.com/uploads/scale_avatar/0/1/1-male-good-large.jpg'  && !(creator.profile_picture_thumb_url.include? 'question_mark') && !(creator.profile_picture_thumb_url.include? 'unknown')? creator.profile_picture_thumb_url : 'no_image_available_thumb.jpg', class: 'img-thumbnail'), creator_path(creator))
+          %p.text-center=link_to creator.name, creator_path(creator), class: 'creator-name'
