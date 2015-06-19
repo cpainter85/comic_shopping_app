@@ -12,10 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
 //= require jquery.turbolinks
+
 
 $(document).ready(function () {
 
@@ -143,4 +145,14 @@ $(document).ready(function () {
     $('.retract-credits').hide();
 
   });
+
+  // for faq page
+  $(function() {
+    $( "#accordion" ).accordion({
+      collapsible: true,
+      active: false
+    });
+  });
+
+  $('.publisher-list').hide();
 });

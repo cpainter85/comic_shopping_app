@@ -8,9 +8,16 @@ feature 'About Page' do
     expect(current_path).to eq about_path
 
     expect(page).to have_content 'About'
+    expect(page).to have_content 'Frequently Asked Questions'
   end
 
-  xscenario 'Can reach about page from navbar' do
+  scenario 'Can reach about page from navbar' do
+    publisher = create_publisher
+    visit publisher_path(publisher)
 
+    click_link 'About'
+    expect(current_path).to eq about_path
+    expect(page).to have_content 'About'
+    expect(page).to have_content 'Frequently Asked Questions'
   end
 end
