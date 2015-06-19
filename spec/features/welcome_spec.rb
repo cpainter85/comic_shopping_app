@@ -19,23 +19,7 @@ feature 'Welcome Page' do
   scenario 'Welcome page should NOT have navbar' do
     visit root_path
 
-    expect(page).to have_no_css('nav') 
+    expect(page).to have_no_css('nav')
   end
-
-  # unless I can figure out how to build pg_search database in test environment can't test search
-  # scenario 'User can search volumes from welcome page' do
-  #   volume = create_volume(@publisher)
-  #
-  #   visit root_path
-  #   fill_in 'query', with: volume.name
-  #   click_button 'Search'
-  #   # within('.search-box') { fill_in with: volume.name}
-  #
-  #   expect(current_path).to eq search_path
-  #
-  #   expect(page).to have_content volume.name
-  #   expect(page).to have_css("img[src*='#{volume.thumbnail_url}']")
-  #
-  # end
 
 end

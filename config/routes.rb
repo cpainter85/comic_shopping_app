@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get '/search', to: 'search#search', as: 'search'
 
+  get '/about', to: 'about#index', as: 'about'
+
   resources :creators, only: [:index, :show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

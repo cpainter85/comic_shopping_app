@@ -1,7 +1,9 @@
 .container
   .jumbotron.text-center
     %h1 Welcome!
-    %h4 Here you can search and find information about comics that you wish to purchase along with links to various vendors selling digital versions of these comics
+    %h4
+      Here you can search and find information about comics that you wish to purchase along with links to various vendors selling digital versions of these comics.  For more information, visit our
+      =link_to 'About Page', about_path
     .well.search-well
       =form_tag search_path, class: 'form-inline', method: :get do
         .form-group
@@ -13,10 +15,9 @@
     .browse-options
       %p=link_to 'Browse All Creators', creators_path
       %p -or-
-      %p Browse Volumes and Characters by Publishers:
-    .row
+      %p=link_to 'Browse Volumes and Characters by Publishers:', '#', class: 'publisher-toggle'
+    .row.publisher-list
       -@publishers.order(:name).each do |publisher|
-
         .col-md-2
           .row
             =link_to image_tag(publisher.logo_thumb_url), publisher_path(publisher), class: 'pub-logo'
