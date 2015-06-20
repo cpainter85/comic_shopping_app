@@ -154,5 +154,4 @@ $(document).ready(function () {
     });
   });
 
-  $('.publisher-list').hide();
 });
