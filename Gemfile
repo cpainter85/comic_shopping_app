@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'jquery-ui-rails', '~> 5.0.5'
 gem 'rails_12factor', '~> 0.0.3', group: :production
-gem 'will_paginate', '~> 3.0.6'
 gem 'pg_search', '~> 0.7.9'
 gem 'nokogiri', '~> 1.6.6.2'
 gem 'bootstrap-sass', '~> 3.3.4'

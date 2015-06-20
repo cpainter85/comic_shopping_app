@@ -9,9 +9,9 @@
         .container.center-block
           -@volume.for_sale_bundles.sort {|a,b| a.extract_first_number_from_bundle <=> b.extract_first_number_from_bundle }.each do |bundle|
             -if bundle.extract_issue_numbers_from_bundle == 'Big Bundle'
-              =link_to "Purchase a bundle of all issues for #{number_to_currency(bundle.price_in_cents.to_f/100)} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle'
+              =link_to "Purchase a bundle of all issues for #{number_to_currency(bundle.price_in_cents.to_f/100)} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle vendor', data: { vendor: "#{bundle.vendor.name}"}
             -else
-              =link_to "Purchase a bundle of issues #{bundle.extract_issue_numbers_from_bundle} for #{number_to_currency(bundle.price_in_cents.to_f/100)} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle'
+              =link_to "Purchase a bundle of issues #{bundle.extract_issue_numbers_from_bundle} for #{number_to_currency(bundle.price_in_cents.to_f/100)} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle vendor', data: { vendor: "#{bundle.vendor.name}"}
     .container
       .col-md-6
         .full-description
@@ -27,7 +27,7 @@
           .container.center-block
             -@volume.for_sale_bundles.sort {|a,b| a.extract_first_number_from_bundle <=> b.extract_first_number_from_bundle }.each do |bundle|
               -if bundle.extract_issue_numbers_from_bundle == 'Big Bundle'
-                =link_to "Purchase a bundle of all issues for #{number_to_currency(bundle.price_in_cents.to_f/100)} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle-right'
+                =link_to "Purchase a bundle of all issues for #{number_to_currency(bundle.price_in_cents.to_f/100)} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle-right vendor', data: { vendor: "#{bundle.vendor.name}"}
               -else
-                =link_to "Purchase a bundle of issues #{bundle.extract_issue_numbers_from_bundle} for #{number_to_currency(bundle.price_in_cents.to_f/100)} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle-right'
+                =link_to "Purchase a bundle of issues #{bundle.extract_issue_numbers_from_bundle} for #{number_to_currency(bundle.price_in_cents.to_f/100)} at #{bundle.vendor.name}", bundle.url, class: 'btn btn-warning btn-lg btn-block btn-bundle-right vendor', data: { vendor: "#{bundle.vendor.name}"}
         =link_to "View other volumes by #{@publisher.name}", publisher_path(@publisher)

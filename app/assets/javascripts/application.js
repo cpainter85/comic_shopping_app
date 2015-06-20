@@ -12,10 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+//= require jquery-ui
 //= require jquery.turbolinks
 
 
@@ -153,5 +153,20 @@ $(document).ready(function () {
       active: false
     });
   });
+
+  // leaving for vendor
+  $(document).on('click', '.vendor', function (event) {
+    event.preventDefault();
+    $('.container').append('<div class="dialog"><p class="dialog-message"></p></div>')
+    var vendorUrl = $(this).attr('href');
+    var vendorName = $(this).attr('data-vendor');
+    $(function() {
+      $( ".dialog" ).dialog();
+    });
+    $('.dialog-message').text('You are now leaving DigitalComicShopper.ninja for ' + vendorName)
+    setTimeout(function () {
+      window.location.href = vendorUrl;
+    }, 1500);
+  })
 
 });

@@ -48,9 +48,6 @@
 
       -if @issue.for_sale_comics
         -@issue.for_sale_comics.each do |comic|
-          =link_to "Available for Purchase at #{comic.vendor.name} for #{number_to_currency(comic.price_in_cents.to_f/100)}", comic.url, class: 'btn btn-warning btn-lg btn-block'
+          =link_to "Available for Purchase at #{comic.vendor.name} for #{number_to_currency(comic.price_in_cents.to_f/100)}", comic.url, class: "btn btn-warning btn-lg btn-block vendor", data: { vendor: "#{comic.vendor.name}"}
 
       %p=link_to 'Return to Volume Overview', publisher_volume_path(@publisher, @volume)
-
-      -# -if @issue.get_previous_issue != nil
-      -#   %p=link_to 'Previous', publisher_volume_issue_path(@publisher, @volume,@issue.get_previous_issue), class: 'glyphicon glyphicon-chevron-left'
