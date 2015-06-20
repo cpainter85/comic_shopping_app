@@ -15,7 +15,7 @@
     .browse-options
       %p=link_to 'Browse All Creators', creators_path
       %p -or-
-      %p=link_to 'Browse Volumes and Characters by Publishers:', '#', class: 'publisher-toggle'
+      %p Browse Volumes and Characters by Publishers:
     .row.publisher-list
       -@publishers.order(:name).each do |publisher|
         .col-md-2
